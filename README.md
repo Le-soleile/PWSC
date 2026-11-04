@@ -1,48 +1,92 @@
 # PWSC · Le-soleile 个人网站
 
-个人作品集，包含经历介绍、World of Agents、CleanBot 产品页及 CleanBot PRD。
+一个用于整理个人经历、展示作品与记录产品探索的网站。
 
-## 本地预览
+- **个人经历**：教育、科创竞赛、开源实习与论文记录。
+- **World of Agents**：面向大规模多智能体深度强化学习的仿真训练平台构想。
+- **CleanBot**：面向高校食堂的智能清洁机器人产品探索，包含场景、功能、技术学习记录及产品需求文档。
 
-需要 Python 3，无需安装 Python 第三方依赖。在仓库根目录执行：
+在线访问：[people-ai-chat.cn](https://people-ai-chat.cn/)
 
-```bash
-python3 -m http.server 8000 --directory dist
+## 项目结构
+
+```text
+ dist/                 可直接部署的静态网站及图片、字体、视频等资源
+ site-optimization/    可编辑的页面模块、样式与构建脚本
+   restaurant/         CleanBot 文案、触屏示意与 PRD 源稿
+   world-agents/       World of Agents 文案
 ```
 
-打开 http://localhost:8000 。
+网站无需后端服务或数据库。当前代码基于保留的 React 编译产物与可编辑模块构建，不是完整的原始 React 工程，无需执行 npm 安装。
 
-- 主页：`/`
-- CleanBot：`/#product/cleanbot`
-- World of Agents：`/#product/world-of-agents`
-- PRD：`/docs/cleanbot-prd.html`
-
-## 编辑与构建
+修改页面后，在仓库根目录运行以下命令更新 `dist/`，仅需 Python 3 标准库：
 
 ```bash
 python3 site-optimization/build.py
 ```
 
-构建会更新 `dist/` 的版本化 JS、CSS 和 PRD，然后按上面的方式预览。
+CleanBot PRD 可直接编辑 `site-optimization/restaurant/prd.md`，构建时会同步生成网页。请保留 `dist/assets/index-c7332d4c5fbd.js`，它是构建所需的基线文件。
 
-| 内容 | 文件（相对于 site-optimization/） |
-| --- | --- |
-| 首页标题 | `hero.js` |
-| 经历与详情弹窗 | `about.js`、`reader.css` |
-| 产品练习卡片 | `projects.js` |
-| CleanBot 页面 | `restaurant.js`、`restaurant.css` |
-| CleanBot 文案 | `restaurant/content.json` |
-| 触屏示意 | `restaurant/touchscreen.js` |
-| CleanBot PRD | `restaurant/prd.md` |
-| World of Agents | `world-agents.js`、`world-agents.css`、`world-agents/content.json` |
-| 已公开的联系方式 | `contact.json` |
+## 部署到全新服务器
 
-## 工程现状
+以下以 Ubuntu / Debian 服务器为例，使用具有 sudo 权限的账号操作。直接部署仓库中的 `dist/` 即可，无需先构建。
 
-当前工程由保留的 React 编译产物和后续可编辑模块组成，并非完整的原始 Vite/React 源码工程。`build.py` 将模块合入基线 `dist/assets/index-c7332d4c5fbd.js`，请保留该文件。现阶段没有 `npm install` 或 `npm run build` 步骤。
+**1. 安装 Nginx 并下载项目**
 
-`dist/` 包含可直接托管的静态站点、图片、字体、视频和证书资源；原始证书文件保持原样。仓库未包含服务器 SSH 私钥、线上备份、历史调试截图或服务器专属部署配置。
+```bash
+sudo apt update
+sudo apt install -y nginx git
+sudo git clone https://github.com/Le-soleile/PWSC.git /opt/PWSC
+sudo mkdir -p /var/www/pwsc
+sudo cp -a /opt/PWSC/dist/. /var/www/pwsc/
+sudo chmod -R a+rX /var/www/pwsc
+```
 
-## 发布
+**2. 配置站点**
 
-将构建后的 `dist/` 内容发布到静态网站根目录。修改仓库本身不会自动更新线上网站，仓库当前未配置自动部署。建议入口 HTML 不长期缓存，带哈希的资源可使用长期缓存。
+将以下内容保存到 `/etc/nginx/sites-available/pwsc`。将 `example.com` 换成自己的域名；还没有域名时，可换成服务器公网 IP。
+
+```nginx
+server {
+    listen 80;
+    server_name example.com;
+    root /var/www/pwsc;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    location = /index.html {
+        add_header Cache-Control "no-cache";
+    }
+}
+```
+
+启用配置并启动服务：
+
+```bash
+sudo ln -s /etc/nginx/sites-available/pwsc /etc/nginx/sites-enabled/pwsc
+sudo nginx -t
+sudo systemctl enable nginx
+sudo systemctl restart nginx
+```
+
+在云服务器安全组中放行 TCP 80 端口；若启用了系统防火墙，也需放行。随后通过 `http://你的域名` 或 `http://服务器公网IP` 访问。使用域名时，先将 DNS 的 A 记录指向服务器公网 IP。
+
+需要 HTTPS 时，域名解析生效后放行 TCP 443 端口并执行：
+
+```bash
+sudo apt install -y certbot python3-certbot-nginx
+sudo certbot --nginx -d example.com
+```
+
+**3. 后续更新**
+
+```bash
+sudo git -C /opt/PWSC pull --ff-only
+sudo cp -a /opt/PWSC/dist/. /var/www/pwsc/
+sudo chmod -R a+rX /var/www/pwsc
+```
+
+仓库未配置自动部署，推送代码后需在服务器执行更新。如果只修改了可编辑模块而未提交新的 `dist/`，请先安装 Python 3，在 `/opt/PWSC` 下运行构建命令，再复制部署文件。
