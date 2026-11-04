@@ -211,7 +211,12 @@
 .concepts .section-head { grid-template-columns: minmax(0, 1fr); }
 .concepts .section-head p { grid-column: 1; }
 
-/* Open-source recognition: a small warm star, without moving the data row. */
-#about .metric-star { width: 32px; height: 32px; flex-shrink: 0; color: var(--ed-accent); transform-origin: center; animation: metric-star-shimmer 3.6s ease-in-out infinite; }
-@keyframes metric-star-shimmer { 0%,100% { opacity: .65; transform: scale(.92) rotate(-6deg); } 50% { opacity: 1; transform: scale(1.06) rotate(6deg); } }
-@media (prefers-reduced-motion: reduce) { #about .metric-star { animation: none; } }
+/* Faceted award star: same visual height as the neighbouring numerals. */
+#about .metric-star { width: 76px; height: 68px; flex-shrink: 0; color: var(--ed-accent); overflow: visible; }
+#about .metric-star-glint { transform-box: fill-box; transform-origin: center; animation: metric-star-shimmer 3.6s ease-in-out infinite; }
+#about .metric-star-facets { animation: metric-star-facets 3.6s ease-in-out infinite; }
+@keyframes metric-star-shimmer { 0%,100% { opacity: .3; transform: scale(.7); } 50% { opacity: 1; transform: scale(1); } }
+@keyframes metric-star-facets { 0%,100% { opacity: .25; } 50% { opacity: .65; } }
+@media (max-width:1023px) and (min-width:640px) { #about .metric-star { height:46px; width:54px; } }
+@media (max-width:639px) { #about .metric-star { height:59px; width:66px; } }
+@media (prefers-reduced-motion: reduce) { #about .metric-star * { animation: none; } }

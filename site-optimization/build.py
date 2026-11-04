@@ -10,6 +10,7 @@ import json
 source = Path(__file__).resolve().parent
 if '--skip-prd' not in sys.argv:
     runpy.run_path(str(source / 'restaurant' / 'build_prd.py'), run_name='__main__')
+runpy.run_path(str(source / 'certificates' / 'build.py'), run_name='__main__')
 site = source.parent / 'dist'
 assets = site / 'assets'
 product_images = [
