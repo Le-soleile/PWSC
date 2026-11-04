@@ -1,0 +1,56 @@
+{
+  "hero": {
+    "src": "/assets/cleanbot-hero-724-80ebcbe8485a.webp",
+    "srcSet": "/assets/cleanbot-hero-724-80ebcbe8485a.webp 724w, /assets/cleanbot-hero-1448-c232acf2be7d.webp 1448w",
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "width": 724,
+        "src": "/assets/cleanbot-hero-724-80ebcbe8485a.webp",
+        "bytes": 56428
+      },
+      {
+        "width": 1448,
+        "src": "/assets/cleanbot-hero-1448-c232acf2be7d.webp",
+        "bytes": 150434
+      }
+    ]
+  },
+  "hardware": {
+    "src": "/assets/cleanbot-hardware-724-247b08312dab.webp",
+    "srcSet": "/assets/cleanbot-hardware-724-247b08312dab.webp 724w, /assets/cleanbot-hardware-1448-ac0d62e42e2a.webp 1448w",
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "width": 724,
+        "src": "/assets/cleanbot-hardware-724-247b08312dab.webp",
+        "bytes": 74248
+      },
+      {
+        "width": 1448,
+        "src": "/assets/cleanbot-hardware-1448-ac0d62e42e2a.webp",
+        "bytes": 211944
+      }
+    ]
+  },
+  "closeup": {
+    "src": "/assets/cleanbot-closeup-724-f2cfa8095ee9.webp",
+    "srcSet": "/assets/cleanbot-closeup-724-f2cfa8095ee9.webp 724w, /assets/cleanbot-closeup-1448-d53253376168.webp 1448w",
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "width": 724,
+        "src": "/assets/cleanbot-closeup-724-f2cfa8095ee9.webp",
+        "bytes": 85502
+      },
+      {
+        "width": 1448,
+        "src": "/assets/cleanbot-closeup-1448-d53253376168.webp",
+        "bytes": 265808
+      }
+    ]
+  }
+}

@@ -1,0 +1,93 @@
+/* The home page introduces each experience in reading order; full stories
+   remain accessible through the existing detail buttons. */
+.experience-timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.experience-timeline__entry {
+  display: grid;
+  grid-template-columns: minmax(0, .72fr) minmax(0, 1.28fr);
+  align-items: start;
+  gap: clamp(24px, 4.6vw, 80px);
+  border-top: 1px solid var(--line);
+  padding: clamp(36px, 5vw, 72px) 0;
+  scroll-margin-top: 90px;
+}
+
+.experience-timeline__heading {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  min-width: 0;
+}
+
+.experience-timeline__index {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .16em;
+}
+
+.experience-timeline__label {
+  color: var(--fg);
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.1vw, 2rem);
+  line-height: 1.45;
+  letter-spacing: .02em;
+}
+
+.experience-timeline__heading time {
+  color: var(--fg-low);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: .08em;
+  line-height: 1.8;
+}
+
+.experience-timeline .exp-preview {
+  min-width: 0;
+  min-height: 0;
+  padding-top: 0;
+  padding-left: clamp(24px, 3.6vw, 64px);
+  border-left: 1px solid var(--line);
+  animation: none;
+}
+
+.experience-timeline .exp-preview h3 {
+  margin-top: 0;
+}
+
+.experience-timeline .exp-open {
+  margin-top: 28px;
+}
+
+.about .metrics {
+  margin-top: 0;
+}
+
+@media (width <= 900px) {
+  .experience-timeline__entry {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+    scroll-margin-top: 76px;
+  }
+
+  .experience-timeline__heading {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: baseline;
+    gap: 6px 14px;
+  }
+
+  .experience-timeline__heading time {
+    grid-column: 2;
+  }
+
+  .experience-timeline .exp-preview {
+    border-left: 0;
+    padding-left: 0;
+  }
+}
