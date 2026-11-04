@@ -13,6 +13,8 @@ function Oa({ onBack }) {
     { key: `调度`, label: `02 / DISPATCH`, title: `把一张脏桌，变成明确的任务。`, text: `系统为任务记录目标桌号与到期时间，安排机器人沿可通行路线到桌。同桌任务去重；排队期间重新有人占用，就撤回旧任务。`, result: `识别、排队与行走，全部计入恢复用时。`, image: `hero`, caption: `整机能力构想 · 按桌号到位` },
     { key: `确认`, label: `03 / CONFIRM`, title: `如果您回来了，先问一句。`, text: `到桌后再次核对桌号和占用情况。若有人在场，机器人先停在作业区外，再通过触屏询问。选择清洁且作业区安全后执行；选择离开或无人回应，则不启动清洁。`, result: `清洁验收通过，才将餐桌恢复为可用。`, image: `hardware`, caption: `模块协同构想 · 清洁与现场交互` }
   ];
+  const storyVisuals = story.filter((step, index) => story.findIndex(item => item.image === step.image) === index);
+  const activeVisual = storyVisuals.find(step => step.image === story[activeStep].image);
   const alts = { hero: `智能清洁机器人产品构想：移动底盘搭载机械臂，在桌面上执行擦拭`, hardware: `一体化清洁机器人结构展开构想，展示机械臂、设备模块、移动底盘和清洁刷` };
   d.useEffect(() => {
     const previousTitle = document.title;
@@ -158,11 +160,11 @@ function Oa({ onBack }) {
         intro(`THE FUNCTIONS / 核心功能`, `从看清，到清洁。`, `cleanbot-features-title`, `目标是在约定时间内，让离席后的餐桌重新可用。顶部摄像头与自动派单是初步方案，以下流程仍需通过联调与现场测试验证。`),
         p.jsxs(`div`, { className: `cleanbot-function-story`, children: [
           p.jsxs(`figure`, { className: `cleanbot-story-viewer`, children: [
-            p.jsx(`div`, { className: `cleanbot-story-stage`, children: story.map((step, i) => p.jsx(`div`, { className: `cleanbot-story-image${i === activeStep ? ` is-active` : ``}`, 'data-image-role': step.image, 'aria-hidden': i !== activeStep, children: image(step.image, { alt: alts[step.image] }) }, step.key)) }),
-            p.jsxs(`div`, { className: `cleanbot-story-caption`, children: [p.jsx(`figcaption`, { children: story[activeStep].caption }), p.jsx(`div`, { className: `cleanbot-story-progress`, role: `group`, 'aria-label': `功能叙事进度`, children: story.map((step, i) => p.jsx(`button`, { 'aria-pressed': i === activeStep, 'aria-label': `查看${step.key}`, onClick: () => { setActiveStep(i); jump(`cleanbot-story-${i}`); } }, step.key)) })] })
+            p.jsx(`div`, { className: `cleanbot-story-stage`, children: storyVisuals.map(step => p.jsx(`div`, { className: `cleanbot-story-image${step.image === activeVisual.image ? ` is-active` : ``}`, 'data-image-role': step.image, 'aria-hidden': step.image !== activeVisual.image, children: image(step.image, { alt: alts[step.image] }) }, step.image)) }),
+            p.jsxs(`div`, { className: `cleanbot-story-caption`, children: [p.jsx(`figcaption`, { children: activeVisual.caption }), p.jsx(`div`, { className: `cleanbot-story-progress`, role: `group`, 'aria-label': `功能叙事进度`, children: storyVisuals.map(step => p.jsx(`button`, { 'aria-pressed': step.image === activeVisual.image, 'aria-label': `查看${step.key}`, onClick: () => { const index = story.indexOf(step); setActiveStep(index); jump(`cleanbot-story-${index}`); } }, step.image)) })] })
           ] }),
           p.jsx(`div`, { className: `cleanbot-story-steps`, children: story.map((step, i) => p.jsxs(`article`, { id: `cleanbot-story-${i}`, 'data-story-step': i, className: `cleanbot-story-step${i === activeStep ? ` is-active` : ``}`, children: [
-            p.jsxs(`figure`, { className: `cleanbot-story-mobile-media`, 'data-image-role': step.image, children: [image(step.image), p.jsx(`figcaption`, { children: step.caption })] }),
+            storyVisuals.includes(step) && p.jsxs(`figure`, { className: `cleanbot-story-mobile-media`, 'data-image-role': step.image, children: [image(step.image), p.jsx(`figcaption`, { children: step.caption })] }),
             p.jsx(`p`, { className: `cleanbot-eyebrow`, children: `${step.label} / ${step.key}` }), p.jsx(`h3`, { children: step.title }), p.jsx(`p`, { children: step.text }), p.jsx(`p`, { className: `cleanbot-story-key`, children: step.result }), i === 2 && p.jsx(CleanBotTouchscreen, {})
           ] }, step.key)) })
         ] }),
