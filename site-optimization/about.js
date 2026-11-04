@@ -72,18 +72,18 @@ function ce({ onOpenExperience }) {
       p.jsxs(`header`, { className: `about-overview`, children: [
         p.jsxs(`div`, { className: `section-head`, children: [
           p.jsx(`h2`, { id: `about-title`, children: `个人简介` }),
-          p.jsx(`p`, { className: `editorial-positioning`, children: [`电气自动化`, `深度强化学习`, `开源贡献`].map((label, index) => p.jsxs(`span`, { children: [p.jsx(`i`, { "aria-hidden": true, className: `position-dot position-dot--${index}` }), label] }, label)) })
+          p.jsx(`p`, { className: `editorial-positioning`, children: [`电气自动化`, `开源贡献`, `远程实习`, `软硬件联调`, `深度强化学习`].map((label, index) => p.jsxs(`span`, { children: [p.jsx(`i`, { "aria-hidden": true, className: `position-dot position-dot--${index}` }), label] }, label)) })
         ] }),
         p.jsx(`div`, { className: `overview-orbit`, "aria-hidden": true, children: p.jsx(`span`, { className: `overview-orbit__core` }) })
       ] }),
-      p.jsx(`ul`, { className: `metrics`, "aria-label": `关键数据`, children: ae.map((metric, index) => p.jsx(`li`, {
+      p.jsx(`ul`, { className: `metrics`, "aria-label": `关键数据`, children: ae.map((metric, index) => index === 0 ? { ...metric, label: `合入PR` } : index === 1 ? { value: `2025`, label: `获得2025开源之星`, unit: `OPEN SOURCE STAR`, star: true } : index === 2 ? { ...metric, value: `07` } : metric).map((metric, index) => p.jsx(`li`, {
         className: `metric`, "data-category": metricSlugs[index], children: p.jsxs(`button`, {
           type: `button`, className: `metric-control`, "aria-label": `${metric.value} ${metric.label}，查看相关经历`, "aria-haspopup": `dialog`,
           onPointerEnter: () => setHighlight(metricSlugs[index]), onPointerLeave: event => { if (!event.currentTarget.contains(document.activeElement)) setHighlight(null); },
           onFocus: () => setHighlight(metricSlugs[index]), onBlur: event => { if (!event.currentTarget.matches(`:hover`)) setHighlight(null); },
           onClick: event => { setHighlight(null); onOpenExperience(metricSlugs[index], event.currentTarget); },
           children: [
-            p.jsxs(`strong`, { children: [p.jsx(`span`, { "data-count-target": metric.value, "aria-hidden": true, children: metric.value }), p.jsx(`i`, { className: `metric-dot`, "aria-hidden": true })] }),
+            p.jsxs(`strong`, { children: [p.jsx(`span`, { "data-count-target": metric.value, "aria-hidden": true, children: metric.value }), metric.star ? p.jsx(`svg`, { className: `metric-star`, viewBox: `0 0 48 48`, fill: `none`, "aria-hidden": true, children: p.jsx(`path`, { d: `m24 5 5.8 11.8 13 1.9-9.4 9.2 2.2 13L24 34.7l-11.6 6.2 2.2-13-9.4-9.2 13-1.9Z`, fill: `currentColor`, stroke: `currentColor`, strokeWidth: 1, strokeLinejoin: `round` }) }) : p.jsx(`i`, { className: `metric-dot`, "aria-hidden": true })] }),
             p.jsx(`span`, { className: `metric__label`, children: metric.label }),
             p.jsx(`span`, { className: `metric__unit`, children: metric.unit })
           ]
