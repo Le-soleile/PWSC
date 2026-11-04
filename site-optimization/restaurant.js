@@ -9,11 +9,11 @@ function Oa({ onBack }) {
   const source = `https://github.com/Le-soleile/HumanoidLab`;
   const video = `https://www.bilibili.com/video/BV1C7Ey65E6E/`;
   const story = [
-    { key: `发现`, label: `01 / DETECT`, title: `先找到，真正需要清洁的桌。`, text: `顶部摄像头覆盖编号餐桌，分别观察人员、物品和污渍。确认离席、没有占座物品且需要清洁，才自动建立任务；画面不确定时等待复核。`, result: `桌号连接摄像头区域与机器人地图位置。`, image: `closeup`, caption: `感知端构想 · 顶部发现，近端复核` },
+    { key: `发现`, label: `01 / DETECT`, title: `先找到，真正需要清洁的桌。`, text: `顶部摄像头覆盖编号餐桌，分别观察人员、物品和污渍。确认离席、没有占座物品且需要清洁，才自动建立任务；画面不确定时等待复核。`, result: `桌号连接摄像头区域与机器人地图位置。`, image: `hero`, caption: `整机能力构想 · 餐桌清洁场景` },
     { key: `调度`, label: `02 / DISPATCH`, title: `把一张脏桌，变成明确的任务。`, text: `系统为任务记录目标桌号与到期时间，安排机器人沿可通行路线到桌。同桌任务去重；排队期间重新有人占用，就撤回旧任务。`, result: `识别、排队与行走，全部计入恢复用时。`, image: `hero`, caption: `整机能力构想 · 按桌号到位` },
     { key: `确认`, label: `03 / CONFIRM`, title: `如果您回来了，先问一句。`, text: `到桌后再次核对桌号和占用情况。若有人在场，机器人先停在作业区外，再通过触屏询问。选择清洁且作业区安全后执行；选择离开或无人回应，则不启动清洁。`, result: `清洁验收通过，才将餐桌恢复为可用。`, image: `hardware`, caption: `模块协同构想 · 清洁与现场交互` }
   ];
-  const alts = { hero: `智能清洁机器人产品构想：移动底盘搭载机械臂，在桌面上执行擦拭`, hardware: `一体化清洁机器人结构展开构想，展示机械臂、设备模块、移动底盘和清洁刷`, closeup: `清洁端概念特写，摄像头与擦拭工具集成在机械臂末端` };
+  const alts = { hero: `智能清洁机器人产品构想：移动底盘搭载机械臂，在桌面上执行擦拭`, hardware: `一体化清洁机器人结构展开构想，展示机械臂、设备模块、移动底盘和清洁刷` };
   d.useEffect(() => {
     const previousTitle = document.title;
     document.documentElement.classList.add(`cleanbot-document`);
