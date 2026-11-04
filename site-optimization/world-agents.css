@@ -1,13 +1,13 @@
-/* World of Agents: a light simulation notebook, separate from CleanBot. */
+/* World of Agents: a dark simulation notebook, separate from CleanBot. */
 html.world-agents-document body:after{display:none}
-.world-agents-page{--woa-bg:#f4f5f0;--woa-paper:#fffefa;--woa-ink:#20352d;--woa-muted:#56665b;--woa-accent:#24664e;--woa-line:#20352d24;background:var(--woa-bg);color:var(--woa-ink);font:400 17px/1.8 var(--font-sans,Inter,'PingFang SC',sans-serif);min-height:100vh;overflow:clip;isolation:isolate}
+.world-agents-page{color-scheme:dark;--woa-bg:#101613;--woa-paper:#18211c;--woa-ink:#e5ece7;--woa-muted:#a6b5aa;--woa-accent:#91c7a6;--woa-line:#dcebe01f;background:var(--woa-bg);color:var(--woa-ink);font:400 17px/1.8 var(--font-sans,Inter,'PingFang SC',sans-serif);min-height:100vh;overflow:clip;isolation:isolate}
 .world-agents-page *{box-sizing:border-box}
 .world-agents-page :where(h1,h2,h3,p,figure,dl,dd){margin:0}
 .world-agents-page :where(h1,h2,h3){text-wrap:balance;letter-spacing:0}
 .world-agents-page p{text-wrap:pretty}
 .world-agents-page button{font:inherit;cursor:pointer;color:inherit;border:0;background:transparent}
 .world-agents-page :focus-visible{outline:2px solid var(--woa-accent);outline-offset:4px}
-.world-agents-page ::selection{background:#c7dfcf;color:#163727}
+.world-agents-page ::selection{background:#34513f;color:#ecf4ee}
 .world-agents-page [hidden]{display:none!important}
 .world-agents-page .woa-shell{width:min(1200px,calc(100% - clamp(40px,8vw,128px)));margin-inline:auto}
 .world-agents-page section[id]{scroll-margin-top:110px}
@@ -27,20 +27,20 @@ html.world-agents-document body:after{display:none}
 .woa-hero h1 span{font-family:var(--font-serif,Georgia,serif);font-style:italic;font-weight:400;color:var(--woa-accent)}
 .world-agents-page .woa-subtitle{font-size:clamp(20px,1.9vw,25px);line-height:1.65;font-weight:500;max-width:25em;margin-bottom:20px}
 .world-agents-page .woa-description{font-size:17px;line-height:1.9;color:var(--woa-muted);max-width:34em}
-.world-agents-page .woa-explore{display:inline-flex;align-items:center;justify-content:center;gap:24px;min-height:52px;padding:10px 24px;margin-top:32px;border:1px solid var(--woa-accent);background:var(--woa-accent);color:#fffefa;border-radius:4px;font-size:15px}
-.world-agents-page .woa-explore:hover{background:#194b39}
+.world-agents-page .woa-explore{display:inline-flex;align-items:center;justify-content:center;gap:24px;min-height:52px;padding:10px 24px;margin-top:32px;border:1px solid var(--woa-accent);background:var(--woa-accent);color:#101613;border-radius:4px;font-size:15px}
+.world-agents-page .woa-explore:hover{background:#b0dbbf}
 .woa-hero-visual{min-width:0;position:relative;background:var(--woa-paper);border:1px solid var(--woa-line);border-radius:4px;padding:20px}
 .woa-visual-toolbar{display:flex;gap:16px;align-items:center;justify-content:space-between;border-bottom:1px solid var(--woa-line);padding-bottom:16px;color:var(--woa-muted);font:10px/1.8 var(--font-mono,monospace);letter-spacing:.04em}
-.woa-arena{display:block;width:100%;height:auto;color:#4a6b54;margin-block:20px}
+.woa-arena{display:block;width:100%;height:auto;color:#70927c;margin-block:20px}
 .woa-arena-grid{opacity:.26}
-.woa-arena-boundary{fill:none;stroke:#46604e;stroke-width:1}
-.woa-arena-route{fill:none;stroke:#809c88;stroke-width:1;stroke-dasharray:4 5}
-.woa-arena-obstacle{fill:#e7ece6;stroke:#839988;stroke-width:1}
-.woa-arena-agent circle{fill:#e0e9df;stroke:#486d55;stroke-width:1}
-.woa-arena-agent .woa-arena-agent-center{fill:#486d55;stroke:none}
-.woa-arena-agent.is-highlighted circle{fill:#24664e;stroke:#24664e}
-.woa-arena-agent.is-highlighted .woa-arena-agent-center{fill:#fffefa}
-.woa-arena text{font:10px var(--font-mono,monospace);fill:#56665b;letter-spacing:.04em}
+.woa-arena-boundary{fill:none;stroke:#789783;stroke-width:1}
+.woa-arena-route{fill:none;stroke:#6d907b;stroke-width:1;stroke-dasharray:4 5}
+.woa-arena-obstacle{fill:#26392e;stroke:#688f76;stroke-width:1}
+.woa-arena-agent circle{fill:#233a2d;stroke:#99c5a7;stroke-width:1}
+.woa-arena-agent .woa-arena-agent-center{fill:#99c5a7;stroke:none}
+.woa-arena-agent.is-highlighted circle{fill:#91c7a6;stroke:#91c7a6}
+.woa-arena-agent.is-highlighted .woa-arena-agent-center{fill:#101613}
+.woa-arena text{font:10px var(--font-mono,monospace);fill:#a6b5aa;letter-spacing:.04em}
 .woa-hero-visual figcaption{border-top:1px solid var(--woa-line);padding-top:16px;font:12px/1.7 var(--font-mono,monospace);color:var(--woa-muted)}
 .woa-capabilities{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;border-block:1px solid var(--woa-line);padding-block:28px}
 .woa-capabilities>div{display:grid;grid-template-columns:auto 1fr;gap:0 16px;align-items:baseline}
@@ -58,17 +58,17 @@ html.world-agents-document body:after{display:none}
 .woa-need-list li>span{color:var(--woa-accent);font:14px/2 var(--font-mono,monospace)}
 .woa-need-list h3{margin-bottom:16px}
 .woa-need-list p,.woa-advantage-grid article>p:last-child{font-size:16px;line-height:1.9;color:var(--woa-muted)}
-.woa-advantage-section{margin-top:144px;padding-block:96px;background:#e5ece4}
+.woa-advantage-section{margin-top:144px;padding-block:96px;background:#17231c}
 .woa-advantage-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px}
-.woa-advantage-grid article{padding-top:24px;border-top:1px solid #20352d30}
+.woa-advantage-grid article{padding-top:24px;border-top:1px solid #dcebe026}
 .woa-advantage-grid h3{margin-bottom:16px}
 .woa-advantage-grid .woa-eyebrow{margin-bottom:20px;font-size:12px;letter-spacing:0}
 .woa-workspace{border:1px solid var(--woa-line);background:var(--woa-paper);border-radius:4px;overflow:clip}
 .woa-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-bottom:1px solid var(--woa-line)}
 .world-agents-page .woa-tabs button{display:flex;gap:12px;align-items:center;justify-content:center;min-height:72px;padding:16px;font-size:16px;border-bottom:2px solid transparent}
 .woa-tabs button span{font:11px var(--font-mono,monospace);color:var(--woa-muted)}
-.world-agents-page .woa-tabs button[aria-selected=true]{color:var(--woa-accent);border-bottom-color:var(--woa-accent);background:#edf2e9}
-.woa-tabs button:hover{background:#f0f3ed}
+.world-agents-page .woa-tabs button[aria-selected=true]{color:var(--woa-accent);border-bottom-color:var(--woa-accent);background:#24392c}
+.woa-tabs button:hover{background:#202e25}
 .woa-tabs button:focus-visible{outline-offset:-6px}
 .woa-feature-panel{display:grid;grid-template-columns:1fr .8fr;gap:80px;padding:56px;align-items:start;min-height:410px}
 .woa-feature-panel h3{font-size:28px;margin-bottom:20px}
@@ -79,7 +79,7 @@ html.world-agents-document body:after{display:none}
 .woa-workflow-visual{display:grid;gap:12px;padding-left:28px;border-left:1px solid var(--woa-line)}
 .woa-workflow-node{display:flex;gap:20px;align-items:center;padding:16px 20px;border:1px solid var(--woa-line);color:var(--woa-muted);font-size:15px}
 .woa-workflow-node>span:first-child{font:11px var(--font-mono,monospace)}
-.woa-workflow-node.is-current{background:#e5ece4;border-color:#567e61;color:#183e32}
+.woa-workflow-node.is-current{background:#17231c;border-color:#82b895;color:#d9eddf}
 .woa-workflow-visual>p{font:12px/1.8 var(--font-mono,monospace);margin-top:8px}
 .woa-tech{display:grid;grid-template-columns:.85fr 1.15fr;gap:96px;align-items:start}
 .woa-specs>div{display:grid;grid-template-columns:140px 1fr;gap:28px;padding-block:24px;border-top:1px solid var(--woa-line)}
@@ -91,13 +91,13 @@ html.world-agents-document body:after{display:none}
 .woa-faq-list button{width:100%;display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:80px;padding:22px 0;text-align:left}
 .woa-faq-list button>span{color:var(--woa-accent);font-size:24px;flex-shrink:0}
 .woa-faq-list [role=region]{padding-bottom:28px;color:var(--woa-muted);font-size:16px;line-height:1.9}
-.woa-closing{padding-block:104px;background:#183e32;color:#f4f5f0}
+.woa-closing{padding-block:104px;background:#1b3024;color:#e5ece7}
 .woa-closing h2{max-width:700px;font-size:clamp(32px,4vw,56px)}
-.world-agents-page .woa-closing .woa-eyebrow,.woa-closing p{color:#c3d9ca}
-.world-agents-page .woa-closing .woa-explore{background:#f4f5f0;border-color:#f4f5f0;color:#183e32}
-.woa-closing :focus-visible{outline-color:#f4f5f0}
+.world-agents-page .woa-closing .woa-eyebrow,.woa-closing p{color:#b6ccbd}
+.world-agents-page .woa-closing .woa-explore{background:#b0dbbf;border-color:#b0dbbf;color:#101613}
+.woa-closing :focus-visible{outline-color:#91c7a6}
 .woa-footer{display:flex;justify-content:space-between;gap:24px;padding-block:28px;font-size:13px;color:var(--woa-muted)}
-.woa-skip{position:fixed;z-index:100;top:8px;left:20px;transform:translateY(-160%);padding:10px 20px;background:var(--woa-accent);color:#fffefa}
+.woa-skip{position:fixed;z-index:100;top:8px;left:20px;transform:translateY(-160%);padding:10px 20px;background:var(--woa-accent);color:#101613}
 .woa-skip:focus{transform:none}
 @media(max-width:1100px){
  .woa-topbar{grid-template-columns:1fr auto;gap:0 24px;min-height:64px;padding-top:8px}

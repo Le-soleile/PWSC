@@ -73,7 +73,7 @@ function ce({ onOpenExperience }) {
       p.jsxs(`header`, { className: `about-overview`, children: [
         p.jsxs(`div`, { className: `section-head`, children: [
           p.jsx(`h2`, { id: `about-title`, children: `个人简介` }),
-          p.jsx(`p`, { className: `editorial-positioning`, children: [`电气自动化`, `开源贡献`, `远程实习`, `软硬件联调`, `深度强化学习`].map((label, index) => p.jsxs(`span`, { children: [p.jsx(`i`, { "aria-hidden": true, className: `position-dot position-dot--${index}` }), label] }, label)) })
+          p.jsx(`p`, { className: `editorial-positioning`, children: [`电气自动化`, `开源贡献`, `远程实习`, `软硬件联调`, `AI`].map((label, index) => p.jsxs(`span`, { children: [p.jsx(`i`, { "aria-hidden": true, className: `position-dot position-dot--${index}` }), label] }, label)) })
         ] }),
         p.jsx(`div`, { className: `overview-orbit`, "aria-hidden": true, children: p.jsx(`span`, { className: `overview-orbit__core` }) })
       ] }),
