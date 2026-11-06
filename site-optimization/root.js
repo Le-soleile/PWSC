@@ -1,3 +1,5 @@
+function ExperienceTemplateRoute({ slug }) { d.useEffect(() => { window.location.replace(`/experience.html?case=${encodeURIComponent(slug)}`); }, [slug]); return null; }
+function CleanBotTemplateRoute() { d.useEffect(() => { window.location.replace(`/cleanbot.html`); }, []); return null; }
 function dl() {
   const experienceTrigger = d.useRef(null);
   const [selected, setSelected] = d.useState(null);
@@ -21,12 +23,12 @@ function dl() {
   }, [selected]);
   const openProduct = slug => { window.history.pushState(null, ``, `#product/${slug}`); setProductSlug(slug); };
   const closeProduct = () => { window.history.pushState(null, ``, `#products`); setProductSlug(null); };
-  const openExperience = (slug, trigger) => { experienceTrigger.current = trigger || document.activeElement; setExperienceSlug(slug); };
+  const openExperience = (slug, trigger) => { window.location.href = `/experience.html?case=${encodeURIComponent(slug)}`; };
   const closeExperience = d.useCallback(() => {
     setExperienceSlug(null);
     if (ll()) window.history.replaceState(null, ``, `#about`);
   }, []);
-  if (productSlug === `cleanbot` || productSlug === `g1-cleaning`) return p.jsx(Oa, { onBack: closeProduct });
+  if (productSlug === `cleanbot` || productSlug === `g1-cleaning`) return p.jsx(CleanBotTemplateRoute, {});
   if (productSlug === `world-of-agents` || productSlug === `embodied-dataops`) return p.jsx(WorldAgentsPage, { onBack: closeProduct });
   const experience = experienceSlug ? ne(experienceSlug) : null;
   return p.jsxs(p.Fragment, { children: [
@@ -36,6 +38,6 @@ function dl() {
       p.jsxs(`main`, { className: `site-main`, children: [p.jsx(I, {}), p.jsx(ce, { onOpenExperience: openExperience }), p.jsx(le, { selected, onSelect: setSelected, onOpenProduct: openProduct, onClose: () => setSelected(null) })] }),
       p.jsx(_a, {})
     ] }),
-    experience && p.jsx(EditorialExperienceDrawer, { experience, onClose: closeExperience, returnFocus: experienceTrigger.current }, experience.slug)
+    experience && p.jsx(ExperienceTemplateRoute, { slug: experience.slug })
   ] });
 }

@@ -331,3 +331,39 @@ html.cleanbot-document body:after{display:none}
 .cleanbot-launch .cleanbot-story-mobile-media { background:transparent; }
 .cleanbot-launch .cb-touch-surface { rx:12px; }
 .cleanbot-launch .cb-touch-choice rect { rx:8px; }
+
+/* Template 3: framed full-bleed opening and a technical, modular layout. */
+.cleanbot-launch{--cb-bg:#080a0c;--cb-panel:#101418;--cb-raised:#151b20;--cb-text:#f1f4f4;--cb-muted:#a0aab0;--cb-weak:#7e8a90;--cb-line:rgba(199,220,228,.17);--cb-accent:#a9dfef;--cb-radius:2px;background:#080a0c}
+.cleanbot-launch .cleanbot-header.is-scrolled{background:rgba(8,10,12,.96)}
+.cleanbot-launch .cleanbot-hero{width:calc(100% - 48px);max-width:none;min-height:min(900px,100svh);display:flex;align-items:flex-end;padding:150px clamp(28px,5vw,80px) 86px;border:1px solid #ffffff30;overflow:hidden;background:#10171b}
+.cleanbot-launch .cleanbot-hero-visual{position:absolute;inset:0;z-index:0;width:100%;height:100%;margin:0!important}
+.cleanbot-launch .cleanbot-hero-visual:before{content:'';position:absolute;z-index:1;inset:0;height:auto;border-radius:0;filter:none;background:linear-gradient(90deg,#070b0eed 0%,#080d10bd 38%,#080d1040 75%),linear-gradient(0deg,#070b0ec7,transparent 50%)}
+.cleanbot-launch .cleanbot-hero-visual img{width:100%;height:100%;object-fit:cover;object-position:center 45%;filter:brightness(.68) saturate(.75)}
+.cleanbot-launch .cleanbot-hero-visual figcaption{position:absolute;right:24px;bottom:18px;color:#e7eef0aa;font:10px var(--cb-mono);letter-spacing:.08em}
+.cleanbot-launch .cleanbot-hero-copy{max-width:760px;justify-self:auto;margin:0}
+.cleanbot-launch .cleanbot-hero h1{font-size:clamp(48px,6.5vw,92px);line-height:1.12;letter-spacing:-.04em}
+.cleanbot-launch .cleanbot-stage-pill{border-radius:2px;border-color:#d4f4ff55;background:#0b1419a8}
+.cleanbot-launch .cleanbot-scroll-cue{right:clamp(28px,5vw,80px);bottom:56px}
+.cleanbot-launch .cleanbot-capability-band{border-radius:0;margin-top:22px;background:#101518;padding:35px 40px}
+.cleanbot-launch .cleanbot-section{padding-top:150px}
+.cleanbot-launch .cleanbot-section-intro{border-top:1px solid var(--cb-line);padding-top:28px;gap:50px}
+.cleanbot-launch .cleanbot-section-intro h2:before{content:'> ';font-family:var(--cb-mono);color:var(--cb-accent);font-size:.65em}
+.cleanbot-launch :is(.cleanbot-needs-grid,.cleanbot-advantage-grid,.cleanbot-function-grid,.cleanbot-tech-grid){gap:1px;background:var(--cb-line);border:1px solid var(--cb-line)}
+.cleanbot-launch :is(.cleanbot-needs-grid,.cleanbot-advantage-grid,.cleanbot-function-grid,.cleanbot-tech-grid) article{border:0;border-radius:0;background:#101518;transition:background .35s ease}
+.cleanbot-launch :is(.cleanbot-needs-grid,.cleanbot-advantage-grid,.cleanbot-function-grid,.cleanbot-tech-grid) article:hover{background:#182126}
+.cleanbot-launch .cleanbot-need-number{font-family:var(--cb-mono);color:var(--cb-accent)}
+.cleanbot-launch :is(.cleanbot-primary,.cleanbot-secondary,.cleanbot-back){border-radius:2px}
+.cleanbot-launch .cleanbot-hardware-visual,.cleanbot-launch .cleanbot-story-viewer,.cleanbot-launch .cleanbot-technology{border-radius:2px}
+.cleanbot-launch .cleanbot-closing{border-block:1px solid var(--cb-line);background:linear-gradient(110deg,#101a1e,#080b0d)}
+@media(max-width:767px){
+ .cleanbot-launch .cleanbot-hero{width:calc(100% - 24px);min-height:760px;padding:150px 24px 110px}
+ .cleanbot-launch .cleanbot-hero-visual img{object-position:58% center}
+ .cleanbot-launch .cleanbot-hero-visual:before{background:linear-gradient(0deg,#070b0ef5 5%,#070b0eb8 55%,#070b0e66)}
+ .cleanbot-launch .cleanbot-hero h1{font-size:clamp(42px,10vw,62px)}
+ .cleanbot-launch .cleanbot-hero-visual figcaption{bottom:12px;font-size:9px}
+ .cleanbot-launch .cleanbot-section{padding-top:96px}
+ .cleanbot-launch .cleanbot-capability-band{padding:26px}
+}
+.cleanbot-launch .cleanbot-hero-visual:after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(5,9,11,.93) 0%,rgba(5,9,11,.76) 35%,rgba(5,9,11,.1) 78%)}
+.cleanbot-launch .cleanbot-hero-copy .cleanbot-summary,.cleanbot-launch .cleanbot-hero-copy .cleanbot-lead{color:#d3dfe3}
+@media(max-width:767px){.cleanbot-launch .cleanbot-hero-visual:after{background:linear-gradient(0deg,rgba(5,9,11,.94),rgba(5,9,11,.68) 58%,rgba(5,9,11,.2))}}

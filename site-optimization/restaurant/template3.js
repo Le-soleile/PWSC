@@ -1,0 +1,57 @@
+(() => {
+ const c=window.CLEANBOT_TEMPLATE_CONTENT;
+ const sections=[...document.querySelectorAll('body>section')];
+ const [hero,capabilities,steps,infrastructure,scenarios,plan,cta,footer]=sections;
+ const set=(parent,selector,values)=>parent.querySelectorAll(selector).forEach((node,i)=>{if(values[i]!==undefined)node.textContent=values[i]});
+ const link=(a,url,label)=>{a.href=url;const text=a.querySelector('.button-text');if(text)text.textContent=label;else a.textContent=label};
+ set(document,'.logo-text',['CleanBot','CleanBot']);
+ const nav=[...document.querySelectorAll('.navbar .nav-link')];
+ [['返回作品集','/#products'],['产品能力','#capabilities'],['方案模块','#feature'],['验证计划','#pricing'],['详细文档','/docs/cleanbot-prd.html']].forEach(([label,url],i)=>{if(nav[i]){nav[i].textContent=label;nav[i].href=url}});
+ document.querySelectorAll('.navbar a.link-button').forEach(a=>link(a,'/docs/cleanbot-prd.html','产品 PRD'));
+ hero.querySelector('.body-small').textContent='// 个人产品探索 · 概念与验证阶段';
+ hero.querySelector('.heading-1.center').innerHTML='把重复擦拭，<br/>交给机器人。';
+ hero.querySelector('.heading-6').textContent='CleanBot / 智能餐厅清洁';
+ hero.querySelector('.body-medium').textContent='面向餐具自助回收的高校食堂，探索空桌识别、自动派单、到桌确认与清洁验收，让离席后的餐桌重新可用。';
+ hero.querySelectorAll('a.link-button').forEach(a=>link(a,'/docs/cleanbot-prd.html','查看产品 PRD'));
+ hero.querySelectorAll('a.link').forEach(a=>link(a,'#capabilities','探索方案'));
+ capabilities.id='capabilities';capabilities.querySelector('.heading-2:not(.arrow)').textContent='三项产品能力';
+ set(capabilities,'h4',c.advantages.map(x=>x[0]));
+ set(capabilities,'.card-list .body-medium',c.advantages.map(x=>x[2]));
+ set(capabilities,'.card-list .interface-small',['CONCEPT // 01','CONCEPT // 02','CONCEPT // 03']);
+ capabilities.querySelectorAll('a.link').forEach(a=>link(a,'#workflow','查看流程'));
+ steps.id='workflow';steps.querySelector('.heading-2:not(.arrow)').textContent='从发现，到恢复。';
+ set(steps,'.body-large:not(.grey-100)',c.functions.map(x=>x[0]));set(steps,'.body-large.grey-100.hww',c.functions.map(x=>x[1]));
+ infrastructure.querySelector('.heading-2:not(.arrow)').textContent='方案模块';
+ set(infrastructure,'.section-title-wrap .body-medium',['一体化清洁方案构想','以下动画展示任务与模块关系，均为流程示意，不代表现场运行数据。']);
+ set(infrastructure,'.card-module .interface-small',['MODULE_01 / 任务服务']);set(infrastructure,'.card-module h3',['连接桌号、任务与机器人']);set(infrastructure,'.card-module .body-medium',[c.hardware[3][1]]);
+ set(infrastructure,'.infra-metric-reach .interface-small',['WORKFLOW / 核心流程']);
+ const reach=infrastructure.querySelector('.infra-metric-reach .number-count');if(reach)reach.innerHTML='<h3 class="heading-3">04</h3>';
+ set(infrastructure,'.infra-metric-reach .body-medium',['识别 · 调度 · 交互 · 验收']);
+ set(infrastructure,'.uptime-card-box .interface-small',['清洁恢复']);set(infrastructure,'.uptime-card-box h4',['待现场验证']);
+ set(infrastructure,'.infra-card-map .interface-small',['TABLE_MAP / 桌号映射']);set(infrastructure,'.infra-card-map h5',['餐桌与地图位置对应']);
+ set(infrastructure,'.infra-card-sync h6',['到桌后，再确认']);set(infrastructure,'.infra-card-sync .body-small',['有人时先询问；顾客拒绝或无人回应，不启动清洁。']);
+ const sync=infrastructure.querySelector('.infra-card-sync');sync.tabIndex=0;sync.setAttribute('role','button');sync.setAttribute('aria-label','查看到桌确认流程');let confirmed=false;const toggle=()=>{confirmed=!confirmed;sync.querySelector('h6').textContent=confirmed?'确认安全后，才开始':'到桌后，再确认';sync.querySelector('.body-small').textContent=confirmed?'顾客同意后，还需要让出安全作业空间；异常时停止并转人工。':'有人时先询问；顾客拒绝或无人回应，不启动清洁。';sync.setAttribute('aria-pressed',String(confirmed))};sync.addEventListener('click',toggle);sync.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle()}});
+ set(infrastructure,'.logs-header-row .interface-small',['TASK_FLOW / 流程示意','CONCEPT_ONLY']);
+ set(infrastructure,'.log-line-item .wrapper-time .interface-extra-small',['01','02','03','04','05','06']);
+ infrastructure.querySelectorAll('.log-line-item').forEach((line,i)=>{const list=line.querySelectorAll('.interface-extra-small');list[list.length-1].textContent=['确认离席与脏污','建立去重任务','排队并前往桌号','到桌复核与询问','安全作业与擦拭','验收通过后恢复可用'][i]});
+ set(infrastructure,'.infra-card-security .interface-small',['机载计算','现场保护']);set(infrastructure,'.infra-card-security .body-small',['任务失效即停止','独立急停 / 人工接管']);
+ set(infrastructure,'.deploy-control-card h2',['> 从模块，到验证']);set(infrastructure,'.deploy-control-card .body-large',['机械臂、移动底盘、视觉感知与任务服务协同工作。图示为概念方案，选型与性能均需实测。']);
+ infrastructure.querySelectorAll('a.link-button').forEach(a=>link(a,'/docs/cleanbot-prd.html','查看方案细节'));infrastructure.querySelectorAll('a.link').forEach(a=>link(a,'#pricing','验证计划'));
+ // Keep the source slider, arrows, dashboards and their animation targets.
+ scenarios.id='scenarios';
+ set(scenarios,'.body-extra-large.testimonial',c.needs.map(x=>x[1]));
+ scenarios.querySelectorAll('.w-slide').forEach((slide,i)=>{set(slide,'.interface-large',[String(i+1).padStart(2,'0')]);set(slide,'.body-large',[c.needs[i][0]]);const labels=slide.querySelectorAll('.interface-small');const texts=['SCENARIO / 需求场景',c.needs[i][2],'流程示意','识别离席','到桌复核','验收恢复','概念阶段 · 待现场验证'];labels.forEach((x,j)=>{if(texts[j])x.textContent=texts[j]});set(slide,'.heading-6',['完整记录每一步'])});
+ for(const [selector,label,title,desc] of [['.card-response','恢复用时','待测','识别、排队、行走、交互、擦拭和验收均计入用时。'],['.card-nodes','人员协作','保留','未知污物、遗留物品与异常任务转人工。'],['.card-uptime','现场验证','待做','仿真 demo 与产品构想不能代替餐厅实测。']]){const box=scenarios.querySelector(selector);if(!box)continue;set(box,'.interface-small',[label]);const number=box.querySelector('.number-count-wrap,.number-counting-wrap');if(number)number.innerHTML='<h3 class="heading-3">'+title+'</h3>';set(box,'.interface-large',['']);set(box,'.body-medium',[desc])}
+ scenarios.querySelectorAll('a.link-button').forEach(a=>link(a,'/docs/cleanbot-prd.html','了解验证边界'));set(scenarios,'.heading-4',['> 先验证，再扩展']);
+ plan.querySelector('.heading-2:not(.arrow)').textContent='分阶段验证';set(plan,'.section-title .body-medium',['从概念到可验证任务','先记录失败与边界，再讨论整机落地。']);
+ const phases=[['PHASE_01 / 场景','识别', ['顶部视觉与桌号映射','人员、物品、污渍分开判断','遮挡或不确定时等待复核']],['PHASE_02 / 闭环','联调',['任务去重与排队','到桌复核与触屏确认','机械臂与清洁工具验证','全流程计时与人工验收']],['PHASE_03 / 扩展','试点',['受控区域与时段','底盘、供电与耗材维护','ROS 2 / Nav2 等候选技术评估']]];
+ plan.querySelectorAll('.card-pricing').forEach((card,i)=>{const [label,title,features]=phases[i];set(card,'.interface-small',[label]);set(card,'h3',[title]);set(card,'.pricing-header .interface-small',['']);set(card,'.feature-item-row .body-medium',features);card.querySelectorAll('a').forEach(a=>link(a,'/docs/cleanbot-prd.html','阅读验证计划'))});set(plan,'.pricing-badge .interface-small',['核心验证']);
+ cta.querySelector('h2').innerHTML='一个想法，<br/>认真展开。';cta.querySelectorAll('a').forEach(a=>link(a,'/docs/cleanbot-prd.html','查看完整产品 PRD'));
+ footer.querySelectorAll('.footer-nav-column').forEach((col,i)=>{const names=['方案','学习实践','了解更多'];const links=[[['产品能力','#capabilities'],['工作流程','#workflow']],[['GitHub demo','https://github.com/Le-soleile/HumanoidLab'],['演示视频','https://www.bilibili.com/video/BV1C7Ey65E6E/'],['产品 PRD','/docs/cleanbot-prd.html']],[['返回作品集','/#products'],['个人经历','/#about'],['保持联系','/#contact'],['常见问题与边界','/docs/cleanbot-prd.html']]];col.querySelector('.body-small').textContent=names[i];col.querySelectorAll('a').forEach((a,j)=>{const entry=links[i][j];if(!entry){a.remove();return}a.href=entry[1];const text=a.querySelector('.menu-footer');if(text)text.textContent=entry[0]})});
+ footer.querySelector('.footer-copyright').textContent='© 2026 CLEANBOT / LE-SOLEILE';footer.querySelector('.footer-social-wrap').remove();
+ const replacements={'> READY_TO_DEPLOY_':'> 先验证，再扩展','Join the elite layer of autonomous compute.':'从受控场景开始，记录全过程与失败边界。','Global distributed architecture.':'现场性能与覆盖范围仍需测量。','Fault-Tolerant Sovereign Redundancy.':'保留急停与人工接管。','Neural architecture for autonomous omnichannel dominion. System status: Optimized.':'以下为概念方案，功能与性能均需联合验证。'};
+ const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let node;while(node=walker.nextNode()){const key=node.textContent.trim();if(replacements[key])node.textContent=replacements[key]}
+ document.querySelectorAll('a[href="about.html"],a[href="waitlist.html"],a[href="contact.html"]').forEach(a=>link(a,'/docs/cleanbot-prd.html','查看完整方案'));
+ const learning=document.createElement('section');learning.className='section';learning.id='g1-practice';const container=plan.querySelector('.container').cloneNode(true);container.querySelectorAll('[data-wf-target],[data-w-id],[id]').forEach(x=>{x.removeAttribute('data-wf-target');x.removeAttribute('data-w-id');x.removeAttribute('id');x.removeAttribute('style')});container.querySelector('.heading-2:not(.arrow)').textContent='G1 微调实践';set(container,'.section-title .body-medium',['技术学习与尝试','以 G1 桌面清洁为任务，学习具身智能仿真、示范数据与 VLA 微调。']);const cards=container.querySelectorAll('.card-pricing');const practice=[['SIMULATION','仿真',['以 G1 清洁桌面为 demo','学习场景搭建与动作执行','属于学习尝试，非整机部署']],['FINE-TUNING','微调',['整理遥操作示范数据','学习 VLA 微调与策略评估','梳理数据、训练与仿真验证链路','记录失败与后续改进']],['RESOURCES','记录',['GitHub：HumanoidLab','Bilibili：G1 清洁演示','源码与视频保留实践过程']]];cards.forEach((card,index)=>{set(card,'.interface-small',[practice[index][0]]);set(card,'h3',[practice[index][1]]);set(card,'.feature-item-row .body-medium',practice[index][2]);set(card,'.pricing-header .interface-small',['']);card.querySelectorAll('a').forEach(a=>{link(a,index===1?'https://www.bilibili.com/video/BV1C7Ey65E6E/':'https://github.com/Le-soleile/HumanoidLab',index===1?'观看 G1 演示视频':'查看 G1 微调源码');a.target='_blank';a.rel='noopener noreferrer'})});set(container,'.pricing-badge .interface-small',['学习实践']);learning.append(container);cta.before(learning);
+ document.querySelectorAll('a.brand').forEach(a=>a.href='/#products');
+})();

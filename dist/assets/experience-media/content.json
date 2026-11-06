@@ -1,0 +1,347 @@
+{
+  "heu-education": {
+    "origin": [
+      {
+        "title": "从桌面上的装置，开始理解机器人",
+        "text": "机械臂、夹爪与桌面机器人把课堂里的控制问题变成了可以观察的动作。接线、布置和调试，也让我逐步建立对系统各层关系的理解。",
+        "items": [
+          {
+            "type": "image",
+            "src": "/assets/experience-media/教育经历-322-12.jpg",
+            "original": "/图片/教育经历/20261104-210627.322-12.jpg",
+            "title": "机械臂与夹爪的桌面布置",
+            "text": "工作台上的机械臂与夹爪",
+            "width": 1600,
+            "height": 1200
+          },
+          {
+            "type": "video",
+            "src": "/assets/experience-media/clip-0.mp4",
+            "poster": "/assets/experience-media/poster-0.jpg",
+            "title": "机械臂实践记录",
+            "text": "让机械臂动起来",
+            "original": "/图片/教育经历/20261104-210627.322-1.mp4"
+          }
+        ]
+      }
+    ],
+    "constraints": [
+      {
+        "title": "让学习跨过单一学科的边界",
+        "text": "从单个运动装置到机器人运行过程，学习对象逐渐从单个部件扩展到完整系统。面对不同任务，需要重新理解控制、姿态与执行机构如何配合。",
+        "items": [
+          {
+            "type": "video",
+            "src": "/assets/experience-media/clip-1.mp4",
+            "poster": "/assets/experience-media/poster-1.jpg",
+            "title": "桌面机器人运行记录",
+            "text": "桌面上的机器人小实验",
+            "original": "/图片/教育经历/20261104-210627.322-3.mp4"
+          }
+        ]
+      }
+    ],
+    "iterations": [
+      {
+        "title": "把技术学习延伸到交流与表达",
+        "text": "项目实践之外，研讨会资料、校内活动与荣誉记录，留下了学习、交流和参与校园生活的另一面。它们与工程实践一起构成这段教育经历。",
+        "items": [
+          {
+            "type": "image",
+            "src": "/assets/experience-media/教育经历-322-14.jpg",
+            "original": "/图片/教育经历/20261104-210627.322-14.jpg",
+            "title": "无人系统相关研讨会资料",
+            "text": "研讨会上的学习笔记",
+            "width": 1200,
+            "height": 1600
+          },
+          {
+            "type": "image",
+            "src": "/assets/experience-media/教育经历-322-7.jpg",
+            "original": "/图片/教育经历/20261104-210627.322-7.jpg",
+            "title": "校园 AI 活动现场",
+            "text": "校园里的 AI 活动",
+            "width": 1600,
+            "height": 1200
+          },
+          {
+            "type": "image",
+            "src": "/assets/experience-media/教育经历-322-3.jpg",
+            "original": "/图片/教育经历/20261104-210627.322-3.jpg",
+            "title": "校园参与与荣誉记录",
+            "text": "课堂之外的一点收获",
+            "width": 1600,
+            "height": 1200
+          }
+        ]
+      }
+    ]
+  },
+  "competitions": {
+    "origin": [
+      {
+        "title": "赛道之前，是一张接满线的工作台",
+        "text": "竞赛从硬件搭建开始。不同底盘、传感器与电路布置，让方案不再停留在代码里，而是成为需要反复上电、调试和检查的整机系统。",
+        "items": [
+          {
+            "type": "image",
+            "src": "/assets/experience-media/科创竞赛-322-8.jpg",
+            "original": "/图片/科创竞赛/20261104-210627.322-8.jpg",
+            "title": "两台智能车的硬件布置",
+            "text": "两台车，两套布线",
+            "width": 1600,
+            "height": 1200
+          },
+          {
+            "type": "image",
+            "src": "/assets/experience-media/科创竞赛-338-3.jpg",
+            "original": "/图片/科创竞赛/20261104-211431.338-3.jpg",
+            "title": "智能车整机近景",
+            "text": "近看一下车里的零零碎碎",
+            "width": 1600,
+            "height": 900
+          },
+          {
+            "type": "image",
+            "src": "/assets/experience-media/科创竞赛-322-19.jpg",
+            "original": "/图片/科创竞赛/20261104-210627.322-19.jpg",
+            "title": "车体与外部结构",
+            "text": "换个角度看看车",
+            "width": 1600,
+            "height": 1200
+          },
+          {
+            "type": "image",
+            "src": "/assets/experience-media/科创竞赛-338-4.jpg",
+            "original": "/图片/科创竞赛/20261104-211431.338-4.jpg",
+            "title": "实验室工作环境",
+            "text": "电脑、工具，还有待调的车",
+            "width": 1600,
+            "height": 900
+          }
+        ]
+      }
+    ],
+    "constraints": [
+      {
+        "title": "从局部检查，到完整赛道",
+        "text": "把车放上赛道之前，需要先检查局部行为，再观察连续运行。桌面调试、实验室赛道与比赛现场，是逐步接近交付条件的三个阶段。",
+        "items": [
+          {
+            "type": "video",
+            "src": "/assets/experience-media/clip-2.mp4",
+            "poster": "/assets/experience-media/poster-2.jpg",
+            "title": "局部赛道调试",
+            "text": "先在这段赛道上试试",
+            "original": "/图片/科创竞赛/20261104-210627.322-0.mp4"
+          },
+          {
+            "type": "video",
+            "src": "/assets/experience-media/clip-4.mp4",
+            "poster": "/assets/experience-media/poster-4.jpg",
+            "title": "比赛现场运行记录",
+            "text": "上赛道，看看实际表现",
+            "original": "/图片/科创竞赛/20261104-210627.322-4.mp4"
+          }
+        ]
+      }
+    ],
+    "iterations": [
+      {
+        "title": "把调试带到赛场，把过程留下来",
+        "text": "领队会议、现场运行和活动记录，连接了赛前准备与现场交付。除了做出方案，也要理解规则、配合现场节奏，并把过程整理成可回看的记录。",
+        "items": [
+          {
+            "type": "image",
+            "src": "/assets/experience-media/科创竞赛-322-2.jpg",
+            "original": "/图片/科创竞赛/20261104-210627.322-2.jpg",
+            "title": "2025 年智能汽车竞赛领队会议",
+            "text": "比赛前，先把规则弄明白",
+            "width": 1600,
+            "height": 1200
+          },
+          {
+            "type": "image",
+            "src": "/assets/experience-media/科创竞赛-322-13.jpg",
+            "original": "/图片/科创竞赛/20261104-210627.322-13.jpg",
+            "title": "赛场背后的监看与协作",
+            "text": "赛道之外，也有人忙着",
+            "width": 1600,
+            "height": 1200
+          },
+          {
+            "type": "image",
+            "src": "/assets/experience-media/科创竞赛-322-1.jpg",
+            "original": "/图片/科创竞赛/20261104-210627.322-1.jpg",
+            "title": "大型活动现场记录之一",
+            "text": "到现场，感受一下气氛",
+            "width": 1600,
+            "height": 1200
+          },
+          {
+            "type": "image",
+            "src": "/assets/experience-media/科创竞赛-322-11.jpg",
+            "original": "/图片/科创竞赛/20261104-210627.322-11.jpg",
+            "title": "大型活动现场记录之二",
+            "text": "换个角度记录现场",
+            "width": 1600,
+            "height": 1200
+          },
+          {
+            "type": "image",
+            "src": "/assets/experience-media/科创竞赛-322-17.jpg",
+            "original": "/图片/科创竞赛/20261104-210627.322-17.jpg",
+            "title": "舞台与交流现场",
+            "text": "从工作台走到交流现场",
+            "width": 1600,
+            "height": 1200
+          }
+        ]
+      }
+    ]
+  },
+  "paddle-internship": {
+    "origin": [
+      {
+        "title": "护航计划集训营考核公示",
+        "text": "从集训到结营，留下几份阶段记录。",
+        "items": [
+          {
+            "type": "image",
+            "src": "/assets/experience-media/paddle-codecamp-results.png",
+            "original": "https://github.com/PaddlePaddle/Paddle/issues/78291",
+            "title": "护航计划集训营考核公示",
+            "text": "两次集训，留下的成绩单",
+            "width": 943,
+            "height": 889
+          }
+        ]
+      },
+      {
+        "title": "从远程协作，走进开发者社区",
+        "text": "接口适配发生在日常开发中，社区活动则让我看到这些工具背后的使用者与协作者。开发者证件、活动现场与交流照片，补全了远程工作之外的参与记录。",
+        "items": [
+          {
+            "type": "image",
+            "src": "/assets/experience-media/远程实习-322-16.jpg",
+            "original": "/图片/远程实习/20261104-210627.322-16.jpg",
+            "title": "哈尔滨工程大学飞桨领航团团长聘书",
+            "text": "2024 年，接下领航团团长的任务",
+            "width": 1200,
+            "height": 1600
+          },
+          {
+            "type": "image",
+            "src": "/assets/experience-media/远程实习-322-15.jpg",
+            "original": "/图片/远程实习/20261104-210627.322-15.jpg",
+            "title": "核心开发者证件与年度金牌团长纪念",
+            "text": "开发者证件和金牌团长的小纪念",
+            "width": 1200,
+            "height": 1600
+          },
+          {
+            "type": "image",
+            "src": "/assets/experience-media/远程实习-322-5.jpg",
+            "original": "/图片/远程实习/20261104-210627.322-5.jpg",
+            "title": "文心大模型生态大会现场",
+            "text": "到生态大会逛逛、学学",
+            "width": 1600,
+            "height": 1321
+          },
+          {
+            "type": "image",
+            "src": "/assets/experience-media/远程实习-322-4.jpg",
+            "original": "/图片/远程实习/20261104-210627.322-4.jpg",
+            "title": "AI 活动现场",
+            "text": "聊聊 AI，也听听别人的想法",
+            "width": 1600,
+            "height": 1200
+          },
+          {
+            "type": "image",
+            "src": "/assets/experience-media/远程实习-322-6.jpg",
+            "original": "/图片/远程实习/20261104-210627.322-6.jpg",
+            "title": "开发者交流合影",
+            "text": "和一起交流的开发者留个影",
+            "width": 1200,
+            "height": 1600
+          }
+        ]
+      }
+    ],
+    "iterations": [
+      {
+        "title": "从录取到结项",
+        "text": "一封录取邮件，一张结项证书。",
+        "items": [
+          {
+            "type": "image",
+            "src": "/assets/experience-media/paddle-codecamp-admission.jpg",
+            "title": "护航计划集训营录取邮件",
+            "text": "收到录取邮件，继续做开源",
+            "width": 1200,
+            "height": 3284
+          },
+          {
+            "type": "image",
+            "src": "/assets/experience-media/paddle-hackathon-certificate.png",
+            "original": "/assets/experience-media/paddle-hackathon-certificate.pdf",
+            "title": "第十期飞桨黑客松结项证书",
+            "text": "给这段黑客松经历留个纪念",
+            "width": 1800,
+            "height": 1242
+          },
+          {
+            "type": "image",
+            "src": "/assets/experience-media/paddle-merged-prs.png",
+            "original": "https://github.com/search?q=is%3Apr+is%3Amerged+author%3ALe-soleile&type=pullrequests",
+            "title": "GitHub 已合入 PR 记录",
+            "text": "一个个 PR，攒到了 100+",
+            "width": 1874,
+            "height": 956
+          }
+        ]
+      },
+      {
+        "title": "把交付变成可以复用的工作方式",
+        "text": "实习评价不仅肯定了需求理解、工程交付和测试闭环，也提到了主动探索 Coding Agent、沉淀 skill 的工作。这与接口兼容工作中的规范化、自动验证和经验复用相互呼应。",
+        "items": [
+          {
+            "type": "image",
+            "src": "/assets/experience-media/远程实习-322-18.jpg",
+            "original": "/图片/远程实习/20261104-210627.322-18.png",
+            "title": "实习评价：交付、主动探索与待改进项",
+            "text": "做得好的记下，待改进的也记下",
+            "width": 774,
+            "height": 382,
+            "document": true
+          },
+          {
+            "type": "image",
+            "src": "/assets/experience-media/远程实习-338-1.jpg",
+            "original": "/图片/远程实习/20261104-211431.338-1.jpg",
+            "title": "PaddlePaddle Hackathon 活动资料",
+            "text": "参加开源活动留下的记录",
+            "width": 848,
+            "height": 1600
+          }
+        ]
+      },
+      {
+        "title": "2025 年飞桨开源之星",
+        "text": "飞桨社区公布的 2025 年开源之星名单中，记录了 Le-soleile 的入选信息。",
+        "items": [
+          {
+            "type": "image",
+            "src": "/assets/experience-media/paddle-open-source-star-2025.png",
+            "original": "https://github.com/PaddlePaddle/community/issues/1201",
+            "title": "2025 年飞桨开源之星名单公示",
+            "text": "开源之星名单里，找到了自己的 ID",
+            "width": 1267,
+            "height": 735
+          }
+        ]
+      }
+    ]
+  }
+}

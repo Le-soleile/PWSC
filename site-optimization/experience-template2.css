@@ -1,0 +1,13 @@
+/* Template 2 layout, typography, breakpoints and motion are supplied unchanged by its original stylesheet and scripts. This file changes its palette only. */
+body.body{--_color-guide---global-style--background:#111310;--_color-guide---global-style--title:#efede6;--_color-guide---global-style--content:#bcbdb4;--_color-guide---global-style--base-card:#20241d;--_color-guide---global-style--base-card-ii:#30362b;--_color-guide---neutral--white:#20241d;--_color-guide---neutral--black:#efede6;background:#111310;color:#efede6}
+.header{background-image:linear-gradient(#111310,#11131000)}
+.navbar-menu,.menu-item{background-color:#20241d;border-color:#ffffff18}
+.button.w-button{background-color:#e1d6bb;color:#111310}
+.navbar-brand{color:#efede6;white-space:nowrap;width:auto}
+.nav-back img,.nav-back>.icon,.menu-button-nav img{filter:invert(1)}
+.tittle-badge{color:#c9cabe}
+.rich-text{color:#bcbdb4}.rich-text h4{color:#efede6}.rich-text a{color:#d9c69a}.rich-text blockquote{color:#efede6;border-color:#d9c69a}
+.section.footer{background-color:#20241d}.section.footer a,.section.footer p{color:#bcbdb4}
+.rich-text video{width:100%;height:auto}.rich-text figure img{height:auto}
+@media(prefers-reduced-motion:reduce){[style*="opacity:0"],[style*="opacity: 0"]{opacity:1!important;transform:none!important}}
+.badge{background-color:#292f26}.badge .tittle-badge{color:#d7d9cf}

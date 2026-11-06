@@ -1,0 +1,6 @@
+/* The Daxa template's original stylesheet supplies all layout, typography and interactions. Only palette and Chinese text wrapping are adapted. */
+body.body{--_colors---black:#0e110e;--_colors---white:#edece4;--_colors---grey-100:#b8bcb2;--_colors---grey-500:#91988b;background:#0e110e;color:#edece4}
+.infra-card-sync{cursor:pointer}.infra-card-sync:focus-visible{outline:2px solid #dfc997;outline-offset:3px}
+.card-list .body-medium,.body-large.grey-100.hww{overflow-wrap:anywhere}
+@media(prefers-reduced-motion:reduce){[style*="opacity:0"],[style*="opacity: 0"]{opacity:1!important;transform:none!important}}
+body.body{--_colors---grey-500:#3b4037}

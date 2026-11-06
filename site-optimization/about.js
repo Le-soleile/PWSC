@@ -1,3 +1,16 @@
+const ArchiveMediaContent = EXPERIENCE_MEDIA_CONTENT;
+function ArchiveMediaStories({ slug, chapter }) {
+  const groups = ArchiveMediaContent[slug]?.[chapter] || [];
+  return groups.map((group,index) => p.jsxs(`section`, {className:`archive-media-story`, 'aria-label':group.title, children:[
+    p.jsx(`p`,{className:`archive-media-kicker`,children:`现场记录 / ${String(index + 1).padStart(2,`0`)}`}),
+    p.jsx(`h3`,{children:group.title}),
+    p.jsx(`p`,{className:`archive-media-intro`,children:group.text}),
+    p.jsx(`div`,{className:`archive-media-grid`,children:group.items.map((item,i)=>p.jsxs(`figure`,{className:`archive-media-figure${item.type === `video` ? ` is-video` : ``}${item.document || item.height > item.width * 1.8 ? ` is-document` : ``}`,children:[
+      item.type === `video` ? p.jsxs(`video`,{controls:true,playsInline:true,preload:`none`,poster:item.poster,'aria-label':item.title,onPlay:event=>{const current=event.currentTarget;current.closest(`.archive-reader`)?.querySelectorAll(`video`).forEach(video=>{if(video!==current)video.pause();});},children:[p.jsx(`source`,{src:item.src,type:`video/mp4`}),p.jsx(`a`,{href:item.src,children:`打开视频`})]}) : p.jsx(`a`,{href:item.original,target:`_blank`,rel:`noreferrer`,'aria-label':`查看原图：${item.title}`,children:p.jsx(`img`,{src:item.src,alt:item.title,loading:`lazy`,decoding:`async`,width:item.width,height:item.height})}),
+      p.jsxs(`figcaption`,{children:[p.jsx(`span`,{className:`archive-media-number`,children:`${item.type === `video` ? `VIDEO` : `PHOTO`} ${String(i+1).padStart(2,`0`)}`}),p.jsx(`h4`,{children:item.title}),p.jsx(`p`,{children:item.text}),p.jsx(`a`,{href:item.original || item.src,target:`_blank`,rel:`noreferrer`,children:item.type===`video`?`打开原始视频 ↗`:`查看原图 ↗`})]})
+    ]},item.src))})
+  ]},group.title));
+}
 const ArchiveRecords = {
   'heu-education': { category: `教育经历`, index: `01`, role: `电气自动化 · 大四`, title: `教育经历`, result: `已保研至本校智能科学与技术`, lead: `从电气自动化出发，以机器人、开源框架和强化学习项目连接硬件、系统与算法。`, stats: [[`2023`, `入学年份`], [`4`, `硬件 / 系统 / 算法 / 任务`], [`已保研`, `本校智能科学与技术`]] },
   'competitions': { category: `科创竞赛`, index: `02`, role: `第一作者`, title: `科创竞赛`, result: `6 项国家级、省级竞赛奖项`, lead: `智能车、电子设计与交通预测：在硬件、算力和比赛指标的约束下完成系统交付。`, stats: [[`6`, `国家级、省级奖项`], [`2`, `国家级奖项`], [`第一作者`, `竞赛项目署名`]] },
@@ -245,7 +258,7 @@ function EditorialExperienceDrawer({ experience, onClose, returnFocus }) {
       if (contactDialog.current?.open) return;
       if (event.key === `Escape`) { event.preventDefault(); close(); }
       if (event.key === `Tab`) {
-        const nodes = [...panel.current.querySelectorAll(`a[href], button:not([disabled]), [tabindex="0"]`)].filter(node => node.getClientRects().length);
+        const nodes = [...panel.current.querySelectorAll(`a[href], button:not([disabled]), video[controls], [tabindex="0"]`)].filter(node => node.getClientRects().length);
         const first = nodes[0], last = nodes[nodes.length - 1];
         if (event.shiftKey && (document.activeElement === first || !panel.current.contains(document.activeElement))) { event.preventDefault(); last.focus(); }
         else if (!event.shiftKey && (document.activeElement === last || !panel.current.contains(document.activeElement))) { event.preventDefault(); first.focus(); }
@@ -282,8 +295,8 @@ function EditorialExperienceDrawer({ experience, onClose, returnFocus }) {
       p.jsxs(`article`, { className: `archive-reading-body`, children: [
         p.jsxs(`header`, { className: `archive-case-intro`, children: [p.jsx(`span`, { className: `archive-eyebrow`, children: `${experience.time} / ${item.category}` }), p.jsx(`h1`, { id: `editorial-drawer-title`, children: item.title }), p.jsx(`p`, { className: `archive-case-lead`, children: item.lead }), p.jsx(`p`, { className: `archive-original-title`, children: experience.title }), p.jsx(ArchiveTags, { tags: experience.tags.filter(tag => !extraTags.includes(tag)) })] }),
         p.jsx(`ul`, { className: `archive-result-strip`, 'aria-label': `结果摘要`, children: item.stats.map(([value,label]) => p.jsxs(`li`, { children: [p.jsx(`strong`, { children: value }), p.jsx(`span`, { children: label })] }, label)) }),
-        p.jsxs(`section`, { className: `archive-reading-section`, id: `reading-origin`, 'data-reading-chapter': `origin`, children: [p.jsxs(`h2`, { children: [p.jsx(`span`, { children: `01` }), `起点`] }), p.jsx(`h3`, { children: `经历概述` }), p.jsx(ArchiveParagraphs, { text: experience.summary }), p.jsx(ArchiveParagraphs, { text: experience.story[`起点`] }), p.jsx(ArchiveEvidence, { experience })] }),
-        ...chapters.slice(1).map((entry,index) => p.jsxs(`section`, { className: `archive-reading-section`, id: `reading-${entry.id}`, 'data-reading-chapter': entry.id, children: [p.jsxs(`h2`, { children: [p.jsx(`span`, { children: String(index+2).padStart(2,`0`) }), entry.title] }), ...entry.keys.filter(key => experience.story[key]).map(key => p.jsxs(`section`, { className: `archive-story-block`, children: [p.jsx(`h3`, { children: key }), p.jsx(ArchiveParagraphs, { text: experience.story[key] })] }, key))] }, entry.id)),
+        p.jsxs(`section`, { className: `archive-reading-section`, id: `reading-origin`, 'data-reading-chapter': `origin`, children: [p.jsxs(`h2`, { children: [p.jsx(`span`, { children: `01` }), `起点`] }), p.jsx(`h3`, { children: `经历概述` }), p.jsx(ArchiveParagraphs, { text: experience.summary }), p.jsx(ArchiveParagraphs, { text: experience.story[`起点`] }), p.jsx(ArchiveEvidence, { experience }), p.jsx(ArchiveMediaStories, { slug: experience.slug, chapter: `origin` })] }),
+        ...chapters.slice(1).map((entry,index) => p.jsxs(`section`, { className: `archive-reading-section`, id: `reading-${entry.id}`, 'data-reading-chapter': entry.id, children: [p.jsxs(`h2`, { children: [p.jsx(`span`, { children: String(index+2).padStart(2,`0`) }), entry.title] }), ...entry.keys.filter(key => experience.story[key]).map(key => p.jsxs(`section`, { className: `archive-story-block`, children: [p.jsx(`h3`, { children: key }), p.jsx(ArchiveParagraphs, { text: experience.story[key] })] }, key)), p.jsx(ArchiveMediaStories, { slug: experience.slug, chapter: entry.id })] }, entry.id)),
         experience.slug === `paddle-internship` && p.jsxs(`section`, { className: `archive-original-article`, children: [p.jsx(`h2`, { children: `原始项目资料` }), p.jsx(ArchiveOriginalPaddle, { experience, onClose: close })] }),
         p.jsxs(`footer`, { className: `archive-case-end`, children: [p.jsx(`span`, { className: `archive-eyebrow`, children: `END OF CASE / ${item.index}` }), p.jsx(`button`, { type: `button`, className: `editorial-drawer-contact`, 'aria-haspopup': `dialog`, onClick: () => setContactOpen(true), children: `就这段经历交流 ↗` })] })
       ] })

@@ -2,8 +2,8 @@ function cl() {
   Ba(() => {
     if (window.matchMedia(`(prefers-reduced-motion: reduce)`).matches) return;
     const animations = ha.utils.toArray(`[data-reveal]`).filter(element => !element.closest(`#about`)).map((element) =>
-      ha.fromTo(element, { y: 48, opacity: 0 }, {
-        y: 0, opacity: 1, duration: .85, ease: `power3.out`,
+      ha.fromTo(element, { y: 36, scale: .975, opacity: 0 }, {
+        y: 0, scale: 1, opacity: 1, duration: .9, ease: `power3.out`,
         scrollTrigger: { trigger: element, start: `top 96%`, once: true }
       })
     );

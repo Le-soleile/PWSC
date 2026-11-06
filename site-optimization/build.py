@@ -13,6 +13,12 @@ if '--skip-prd' not in sys.argv:
 runpy.run_path(str(source / 'certificates' / 'build.py'), run_name='__main__')
 site = source.parent / 'dist'
 assets = site / 'assets'
+shutil.copy2(source / 'site-theme.css', assets / 'site-theme.css')
+runpy.run_path(str(source / 'build_world_agents_motion.py'), run_name='__main__')
+runpy.run_path(str(source / 'build_cleanbot_template.py'), run_name='__main__')
+runpy.run_path(str(source / 'build_experience_template.py'), run_name='__main__')
+shutil.copytree(source / 'world-agents-motion', assets / 'world-agents-motion', dirs_exist_ok=True)
+shutil.copytree(source / 'world-agents' / 'images', assets / 'world-agents', dirs_exist_ok=True)
 product_images = [
     'ChatGPT 图像 2026年11月1日 23_10_43-1.png',
     'ChatGPT 图像 2026年11月1日 23_10_52-2.png',
@@ -45,6 +51,10 @@ def public_identity(text):
     return re.sub(r'杨晓春|XiaoChun Yang|Yang Xiaochun', 'Le-soleile', text, flags=re.IGNORECASE)
 
 bundle = public_identity(bundle).replace('项目介绍', '产品练习（个人探索与尝试）')
+bundle = bundle.replace('WORLD_AGENTS_MOTION_HELPER', (source / 'world-agents-motion.js').read_text())
+experience_media = json.loads((source / 'experience-media' / 'content.json').read_text())
+bundle = bundle.replace('EXPERIENCE_MEDIA_CONTENT', json.dumps(experience_media, ensure_ascii=False))
+shutil.copytree(source / 'experience-media', assets / 'experience-media', dirs_exist_ok=True)
 media = json.loads((source / 'restaurant' / 'media.json').read_text())
 bundle = bundle.replace('CLEANBOT_MEDIA', json.dumps(media, ensure_ascii=False))
 content = json.loads((source / 'restaurant' / 'content.json').read_text())
@@ -99,7 +109,7 @@ for previous in ['本校保研控制科学与工程', '保研控制科学与工�
 bundle, removed_indices = re.subn(r'\(0,p\.jsx\)\(`span`,\{className:`section-head__index`,children:`0[234]`\}\),', '', bundle)
 assert removed_indices == 2
 
-css = '\n'.join((source / name).read_text() for name in ['interface.css', 'structure.css', 'editorial.css', 'reader.css', 'ambient.css', 'restaurant.css', 'world-agents.css'])
+css = '\n'.join((source / name).read_text() for name in ['interface.css', 'structure.css', 'editorial.css', 'reader.css', 'ambient.css', 'homepage-motion.css', 'restaurant.css', 'world-agents.css', 'site-theme.css'])
 js_name = 'interface-' + hashlib.sha256(bundle.encode()).hexdigest()[:12] + '.js'
 css_name = 'interface-' + hashlib.sha256(css.encode()).hexdigest()[:12] + '.css'
 (assets / js_name).write_text(bundle)
