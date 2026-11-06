@@ -6,7 +6,7 @@ function ArchiveMediaStories({ slug, chapter }) {
     p.jsx(`h3`,{children:group.title}),
     p.jsx(`p`,{className:`archive-media-intro`,children:group.text}),
     p.jsx(`div`,{className:`archive-media-grid`,children:group.items.map((item,i)=>p.jsxs(`figure`,{className:`archive-media-figure${item.type === `video` ? ` is-video` : ``}${item.document || item.height > item.width * 1.8 ? ` is-document` : ``}`,children:[
-      item.type === `video` ? p.jsxs(`video`,{controls:true,playsInline:true,preload:`none`,poster:item.poster,'aria-label':item.title,onPlay:event=>{const current=event.currentTarget;current.closest(`.archive-reader`)?.querySelectorAll(`video`).forEach(video=>{if(video!==current)video.pause();});},children:[p.jsx(`source`,{src:item.src,type:`video/mp4`}),p.jsx(`a`,{href:item.src,children:`打开视频`})]}) : p.jsx(`a`,{href:item.original,target:`_blank`,rel:`noreferrer`,'aria-label':`查看原图：${item.title}`,children:p.jsx(`img`,{src:item.src,alt:item.title,loading:`lazy`,decoding:`async`,width:item.width,height:item.height})}),
+      item.type === `video` ? p.jsxs(`video`,{controls:true,playsInline:true,preload:`none`,poster:item.poster,'aria-label':item.title,onPlay:event=>{const current=event.currentTarget;current.closest(`.archive-reader`)?.querySelectorAll(`video`).forEach(video=>{if(video!==current)video.pause();});},children:[p.jsx(`source`,{src:item.src,type:`video/mp4`}),p.jsx(`a`,{href:item.src,children:`打开视频`})]}) : p.jsx(`a`,{href:item.original,target:`_blank`,rel:`noreferrer`,'aria-label':`查看原图：${item.title}`,children:p.jsx(`img`,{'data-src':item.src,alt:item.title,loading:`lazy`,decoding:`async`,width:item.width,height:item.height})}),
       p.jsxs(`figcaption`,{children:[p.jsx(`span`,{className:`archive-media-number`,children:`${item.type === `video` ? `VIDEO` : `PHOTO`} ${String(i+1).padStart(2,`0`)}`}),p.jsx(`h4`,{children:item.title}),p.jsx(`p`,{children:item.text}),p.jsx(`a`,{href:item.original || item.src,target:`_blank`,rel:`noreferrer`,children:item.type===`video`?`打开原始视频 ↗`:`查看原图 ↗`})]})
     ]},item.src))})
   ]},group.title));
@@ -266,6 +266,15 @@ function EditorialExperienceDrawer({ experience, onClose, returnFocus }) {
     };
     window.addEventListener(`keydown`, keydown);
     const scroller = scroll.current;
+    // Keep the drawer responsive: media is attached only as it approaches the viewport.
+    const mediaObserver = `IntersectionObserver` in window ? new IntersectionObserver(entries => entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const node = entry.target;
+      if (node.dataset.src) { node.src = node.dataset.src; node.removeAttribute(`data-src`); }
+      if (node.dataset.poster) { node.poster = node.dataset.poster; node.removeAttribute(`data-poster`); }
+      mediaObserver.unobserve(node);
+    }), { root: scroller, rootMargin: `420px 0px` }) : null;
+    panel.current.querySelectorAll(`img[data-src], video[data-poster]`).forEach(node => mediaObserver?.observe(node));
     let disposed = false;
     const update = () => {
       if (disposed || !progress.current) return;
@@ -280,7 +289,7 @@ function EditorialExperienceDrawer({ experience, onClose, returnFocus }) {
     scroller.addEventListener(`scroll`, update, { passive: true });
     update();
     const observer = new ResizeObserver(update); observer.observe(scroller.firstElementChild);
-    return () => { disposed = true; observer.disconnect(); scroller.removeEventListener(`scroll`, update); document.body.style.overflow = overflow; window.removeEventListener(`keydown`, keydown); requestAnimationFrame(() => { if (previous?.isConnected) previous.focus({ preventScroll: true }); }); };
+    return () => { disposed = true; observer.disconnect(); mediaObserver?.disconnect(); scroller.removeEventListener(`scroll`, update); document.body.style.overflow = overflow; window.removeEventListener(`keydown`, keydown); requestAnimationFrame(() => { if (previous?.isConnected) previous.focus({ preventScroll: true }); }); };
   }, []);
   const links = re[experience.slug] ?? [];
   const chapters = [{id:`origin`,title:`起点`,keys:[`起点`]}, {id:`constraints`,title:`约束`,keys:[`挑战`]}, {id:`iterations`,title:`迭代`,keys:[`行动`,`产品方法`,`结果`,`产品思考`]}];
