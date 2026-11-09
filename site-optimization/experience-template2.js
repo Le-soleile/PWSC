@@ -18,12 +18,25 @@
  document.querySelector('h1').textContent=record.title;
  document.querySelector('.paragraph-large').textContent=record.lead;
  const banner=document.querySelector('.banner-tumbnail');
- if(first){banner.src=first.type==='video'?first.poster:first.src;banner.removeAttribute('srcset');banner.alt=first.title;banner.loading='eager';banner.style.height='auto';banner.style.objectFit='contain'}else banner.parentElement.remove();
+ if(first&&!exp.blocks){banner.src=first.type==='video'?first.poster:first.src;banner.removeAttribute('srcset');banner.alt=first.title;banner.loading='eager';banner.style.height='auto';banner.style.objectFit='contain'}else banner.parentElement.remove();
  const rich=document.querySelector('.rich-text');rich.replaceChildren();
- rich.append(h('h4','经历概述'),h('p',exp.summary));
  const facts=document.createElement('ul');exp.facts.forEach(x=>facts.append(h('li',x)));rich.append(facts);
- const appendGroups=(groups=[])=>groups.forEach(group=>{rich.append(h('h4',group.title),h('p',group.text));group.items.filter(item=>item!==first).forEach(item=>{const figure=document.createElement('figure');figure.className='w-richtext-align-fullwidth w-richtext-figure-type-image';const div=document.createElement('div');const asset=document.createElement(item.type==='video'?'video':'img');asset.src=item.src;if(item.type==='video'){asset.controls=true;asset.preload='none';asset.poster=item.poster;asset.playsInline=true;asset.setAttribute('aria-label',item.title)}else{asset.alt=item.title;asset.loading='lazy'}div.append(asset);figure.append(div,h('figcaption',item.text));if(item.original?.startsWith('https://')||item.original?.endsWith('.pdf')){const a=h('a',item.original.endsWith('.pdf')?'查看证书 PDF ↗':'查看原始记录 ↗');a.href=item.original;a.target='_blank';a.rel='noopener noreferrer';figure.querySelector('figcaption').append(document.createTextNode(' '),a)}rich.append(figure)})});
- for(const [key,text] of Object.entries(exp.story)){rich.append(h('h4',key),h('p',text));if(key==='起点')appendGroups(media.origin);if(key==='挑战')appendGroups(media.constraints);if(key==='结果')appendGroups(media.iterations)}
+ rich.append(h('p',exp.time+' · '+record.role));
+ rich.append(h('p',exp.tags.join(' · ')));
+ const stats=document.createElement('ul');record.stats.forEach(([value,label])=>stats.append(h('li',value+' '+label)));rich.append(stats);
+ for(const block of exp.blocks){
+  if(block.type==='heading'){rich.append(h(block.level===2?'h3':'h4',block.text));continue}
+  if(block.type==='paragraph'){rich.append(h('p',block.text));continue}
+  if(block.type!=='media')continue;
+  const figure=document.createElement('figure');figure.className='w-richtext-align-fullwidth w-richtext-figure-type-image';
+  const div=document.createElement('div'),asset=document.createElement(block.mediaType==='video'?'video':'img');asset.src=block.src;
+  if(block.mediaType==='video'){asset.controls=true;asset.preload='none';asset.poster=block.poster;asset.playsInline=true;asset.setAttribute('aria-label',block.title)}
+  else{asset.alt=block.title;asset.loading='lazy';asset.decoding='async'}
+  div.append(asset);const caption=document.createElement('figcaption');caption.append(h('strong',block.title),document.createTextNode(' '+(block.text||'')));figure.append(div,caption);
+  const original=block.original||block.src;
+  if(original){const a=h('a',block.mediaType==='video'?'打开原始视频 ↗':'查看原始资料 ↗');a.href=original;a.target='_blank';a.rel='noopener noreferrer';figure.querySelector('figcaption').append(document.createTextNode(' '),a)}
+  rich.append(figure);
+ }
  rich.append(h('blockquote',record.result));
  const resources=h('h4','相关资料');rich.append(resources);
  (templateExperienceLinks[slug]||[]).forEach(({label,href})=>{const p=document.createElement('p'),a=h('a',label+' ↗');a.href=href;a.target='_blank';a.rel='noopener noreferrer';p.append(a);rich.append(p)});

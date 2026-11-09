@@ -1,7 +1,7 @@
 (() => {
  const experience=location.pathname.includes('experience');
  const title=experience?document.querySelector('h1').textContent:'CleanBot';
- const entries=experience?['经历概述','行动','结果','相关资料'].map((label,i)=>{const heading=[...document.querySelectorAll('.rich-text h4')].find(x=>x.textContent===label);if(heading)heading.id='experience-nav-'+i;return [label,heading?heading.id:'Hero']}):[['产品能力','capabilities'],['工作流程','workflow'],['方案模块','feature'],['G1 微调实践','g1-practice']];
+ const entries=experience?[...document.querySelectorAll('.rich-text h3, .rich-text h4')].filter(x=>x.tagName==='H3'||x.textContent==='相关资料').map((heading,i)=>{heading.id='experience-nav-'+i;return [heading.textContent,heading.id]}):[['产品能力','capabilities'],['工作流程','workflow'],['方案模块','feature'],['G1 微调实践','g1-practice']];
  const original=document.querySelector(experience?'body>.header':'body>.navbar');
  const header=document.createElement('header');header.className='wa-header shared-template-nav';
  const shell=document.createElement('div');shell.className='wa-shell wa-nav';

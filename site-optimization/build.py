@@ -109,6 +109,13 @@ for previous in ['本校保研控制科学与工程', '保研控制科学与工�
 bundle, removed_indices = re.subn(r'\(0,p\.jsx\)\(`span`,\{className:`section-head__index`,children:`0[234]`\}\),', '', bundle)
 assert removed_indices == 2
 
+# Read edited experience data for the homepage as well as detail pages.
+experience_data = json.loads((source / 'experience-content.json').read_text(encoding='utf-8'))
+experience_start = bundle.index('var te=[') + len('var te=')
+experience_end = bundle.index('],ne=', experience_start) + 1
+bundle = bundle[:experience_start] + json.dumps(experience_data, ensure_ascii=False) + bundle[experience_end:]
+bundle = bundle.replace('参与发表三篇深度强化学习论文', '参与三篇深度强化学习研究论文')
+
 css = '\n'.join((source / name).read_text() for name in ['interface.css', 'structure.css', 'editorial.css', 'reader.css', 'ambient.css', 'homepage-motion.css', 'restaurant.css', 'world-agents.css', 'site-theme.css'])
 js_name = 'interface-' + hashlib.sha256(bundle.encode()).hexdigest()[:12] + '.js'
 css_name = 'interface-' + hashlib.sha256(css.encode()).hexdigest()[:12] + '.css'

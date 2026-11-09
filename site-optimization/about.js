@@ -12,10 +12,94 @@ function ArchiveMediaStories({ slug, chapter }) {
   ]},group.title));
 }
 const ArchiveRecords = {
-  'heu-education': { category: `教育经历`, index: `01`, role: `电气自动化 · 大四`, title: `教育经历`, result: `已保研至本校智能科学与技术`, lead: `从电气自动化出发，以机器人、开源框架和强化学习项目连接硬件、系统与算法。`, stats: [[`2023`, `入学年份`], [`4`, `硬件 / 系统 / 算法 / 任务`], [`已保研`, `本校智能科学与技术`]] },
-  'competitions': { category: `科创竞赛`, index: `02`, role: `第一作者`, title: `科创竞赛`, result: `6 项国家级、省级竞赛奖项`, lead: `智能车、电子设计与交通预测：在硬件、算力和比赛指标的约束下完成系统交付。`, stats: [[`6`, `国家级、省级奖项`], [`2`, `国家级奖项`], [`第一作者`, `竞赛项目署名`]] },
-  'paddle-internship': { category: `开源实习`, index: `03`, role: `持续6个月`, title: `百度飞桨 · 远程实习`, result: `100+ PR 合入主仓，10K+ 行代码贡献`, lead: `将 API 兼容需求整理为 5 个验证维度，让接口适配与质量检查成为可复用的流程。`, stats: [[`100+`, `合入主仓 PR`], [`10K+`, `代码贡献`], [`5`, `API 兼容维度`]] },
-  'icma-papers': { category: `研究论文`, index: `04`, role: `第四作者`, title: `IEEE ICMA/Wiley JFR`, result: `参与发表三篇深度强化学习论文`, lead: `负责多智能体强化学习的实验设计、评测体系与仿真验证，相关实验支撑 2 篇 IEEE ICMA 论文录用。`, stats: [[`3`, `参与发表论文`], [`2`, `IEEE ICMA 录用`], [`第四作者`, `论文署名`]] }
+  "paddle-internship": {
+    "category": "实习经历",
+    "index": "01",
+    "role": "AI 开发者生态方向",
+    "title": "百度飞桨 · 远程实习",
+    "lead": "接口名称一致，不代表行为一致。我把参数、返回值和异常等差异拆开检查，完成适配后继续补齐测试与说明文档。",
+    "result": "累计 100+ PR 合入主仓，万行级代码贡献，包含接口实现与文档等工作。",
+    "stats": [
+      [
+        "100+",
+        "合入 PR"
+      ],
+      [
+        "10K+",
+        "行代码贡献"
+      ],
+      [
+        "5",
+        "类兼容检查维度"
+      ]
+    ]
+  },
+  "competitions": {
+    "category": "科创竞赛",
+    "index": "02",
+    "role": "第一作者",
+    "title": "科创竞赛",
+    "lead": "摄像头、传感器、算法和控制器需要一起工作。我从赛题要求出发，明确模块输入输出，再逐步做局部测试和整车联调。",
+    "result": "七项竞赛成绩，分别为智能汽车竞赛国家级二等奖、交通科技竞赛国家级三等奖、2024 与 2025 年智能汽车竞赛东北赛区一等奖、2024 与 2025 年电子设计竞赛省级二等奖、2025 年华为 ICT 大赛省级三等奖。",
+    "stats": [
+      [
+        "2",
+        "项国家级奖项"
+      ],
+      [
+        "2",
+        "项东北赛区一等奖"
+      ],
+      [
+        "3",
+        "项省级奖项"
+      ]
+    ]
+  },
+  "icma-papers": {
+    "category": "研究论文",
+    "index": "03",
+    "role": "第四作者",
+    "title": "IEEE ICMA/Wiley JFR",
+    "lead": "关注算法在统一实验条件下的表现，记录训练曲线与行为结果，为研究结论提供可复核的实验材料。",
+    "result": "参与 IEEE ICMA 与 Wiley JFR 相关研究，三篇论文均为第四作者。",
+    "stats": [
+      [
+        "3",
+        "篇研究论文"
+      ],
+      [
+        "2",
+        "篇 IEEE ICMA 录用"
+      ],
+      [
+        "第四作者",
+        ""
+      ]
+    ]
+  },
+  "heu-education": {
+    "category": "教育经历",
+    "index": "04",
+    "role": "本科大四，已保研",
+    "title": "教育经历",
+    "lead": "从电气工程学习出发，在真实项目中接触机器人硬件、软件系统和学习算法。遇到不熟悉的部分，就结合当前任务补课，再用实验检查理解。",
+    "result": "已保研至本校智能科学与技术",
+    "stats": [
+      [
+        "2023",
+        "入学年份"
+      ],
+      [
+        "4",
+        "硬件 / 系统 / 算法 / 任务"
+      ],
+      [
+        "已保研",
+        "本校智能科学与技术"
+      ]
+    ]
+  }
 };
 function ArchiveParagraphs({ text }) {
   const chunks = [];
@@ -107,11 +191,11 @@ function ce({ onOpenExperience }) {
           ]
         })
       }, metric.unit)) }),
-      p.jsx(`ol`, { className: `experience-timeline${highlight ? ` has-highlight` : ``}`, "aria-label": `个人经历`, children: [...te].reverse().map((experience, index) => {
+      p.jsx(`ol`, { className: `experience-timeline${highlight ? ` has-highlight` : ``}`, "aria-label": `个人经历`, children: te.map((experience, index) => {
         const [title, qualifier] = se(experience.title);
         const links = re[experience.slug] ?? [];
         const name = experience.shortTitle.replace(/（均一作）|（四作）/g, ``).trim();
-        const titleBadge = experience.slug === `competitions` ? `第一作者` : experience.slug === `icma-papers` ? `第四作者` : experience.slug === `paddle-internship` ? `持续6个月` : null;
+        const titleBadge = ArchiveRecords[experience.slug].role;
         const symbols = [
           [`M3 9 12 4l9 5-9 5-9-5Z`, `M6 11v6c4 3 8 3 12 0v-6`, `M21 9v8`],
           [`M8 4h8v5a4 4 0 0 1-8 0V4Z`, `M8 6H4v2a4 4 0 0 0 4 4`, `M16 6h4v2a4 4 0 0 1-4 4`, `M12 13v7`, `M8 20h8`],
@@ -125,7 +209,7 @@ function ce({ onOpenExperience }) {
             p.jsx(`button`, { type: `button`, className: `editorial-card-hit`, "aria-label": `查看${name}详情`, "aria-haspopup": `dialog`, onClick: event => onOpenExperience(experience.slug, event.currentTarget) }),
             p.jsxs(`header`, { className: `experience-timeline__heading`, children: [
               p.jsxs(`div`, { className: `experience-card__top`, "aria-hidden": true, children: [
-                p.jsx(`span`, { className: `experience-card__symbol`, children: p.jsx(`svg`, { viewBox: `0 0 24 24`, fill: `none`, stroke: `currentColor`, strokeWidth: 1.3, strokeLinecap: `round`, strokeLinejoin: `round`, children: symbols[index].map((path, i) => p.jsx(`path`, { d: path }, i)) }) }),
+                p.jsx(`span`, { className: `experience-card__symbol`, children: p.jsx(`svg`, { viewBox: `0 0 24 24`, fill: `none`, stroke: `currentColor`, strokeWidth: 1.3, strokeLinecap: `round`, strokeLinejoin: `round`, children: symbols[[`heu-education`, `competitions`, `paddle-internship`, `icma-papers`].indexOf(experience.slug)].map((path, i) => p.jsx(`path`, { d: path }, i)) }) }),
 
               ] }),
               p.jsxs(`div`, { className: `editorial-card-title`, children: [p.jsx(`h3`, { className: `experience-timeline__label`, id: `exp-heading-${experience.slug}`, children: name }), titleBadge && p.jsx(`span`, { className: `editorial-badge`, children: titleBadge })] }),
