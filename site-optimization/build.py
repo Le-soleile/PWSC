@@ -51,6 +51,10 @@ def public_identity(text):
     return re.sub(r'杨晓春|XiaoChun Yang|Yang Xiaochun', 'Le-soleile', text, flags=re.IGNORECASE)
 
 bundle = public_identity(bundle).replace('项目介绍', '产品练习（个人探索与尝试）')
+# Remove the final contact section's introductory note, including its line break.
+contact_note = ',(0,p.jsxs)(`p`,{className:`contact-note`,children:[`这里记录我做过的事、走过的弯路，`,(0,p.jsx)(`br`,{}),`和一些还没想明白的问题。`]})'
+assert bundle.count(contact_note) == 1
+bundle = bundle.replace(contact_note, '')
 bundle = bundle.replace('WORLD_AGENTS_MOTION_HELPER', (source / 'world-agents-motion.js').read_text())
 experience_media = json.loads((source / 'experience-media' / 'content.json').read_text())
 bundle = bundle.replace('EXPERIENCE_MEDIA_CONTENT', json.dumps(experience_media, ensure_ascii=False))
