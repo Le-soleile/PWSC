@@ -6,6 +6,13 @@ function WorldAgentsPage({ onBack }) {
   const [active, setActive] = d.useState(``);
   const sceneRefs = d.useRef([]);
   const sceneArea = d.useRef(null);
+  const scenes = [
+    {image:`islands.jpg`,title:`群岛海域`,label:`ISLANDS`,text:`岛屿与通道交错，为路径与任务规划提供可观察的场景。`},
+    {image:`open-sea.jpg`,title:`开阔水域`,label:`OPEN WATER`,text:`开阔的水面航行场景，用于观察艇群与环境中的运动。`},
+    {image:`platform.jpg`,title:`海上平台`,label:`OFFSHORE`,text:`海上设施周边的场景呈现，拓展任务的空间背景。`},
+    {image:`underwater.jpg`,title:`海底世界`,label:`UNDERWATER`,text:`海底光学与探照灯交互展示，验证范围与水面训练分别说明。`},
+    {image:`grassland.jpg`,title:`山地草原`,label:`LANDSCAPE`,text:`无人机与地面车交互展示，探索更多类型智能体的呈现。`}
+  ];
   d.useEffect(() => {
     const area = sceneArea.current;
     if (!area) return;
@@ -21,22 +28,15 @@ function WorldAgentsPage({ onBack }) {
       event.preventDefault();
       if (Math.abs(accumulated) >= 90) {
         const direction = Math.sign(accumulated);
-        setScene(current => (current + direction + 3) % 3);
+        setScene(current => (current + direction + scenes.length) % scenes.length);
         accumulated = 0;
         lockedUntil = now + 650;
       }
     };
     area.addEventListener(`wheel`, wheel, { passive: false });
     return () => area.removeEventListener(`wheel`, wheel);
-  }, []);
+  }, [scenes.length]);
   const h = p.jsxs;
-  const scenes = [
-    {image:`islands.jpg`,title:`群岛海域`,label:`ISLANDS`,text:`岛屿与通道交错，为路径与任务规划提供可观察的场景。`},
-    {image:`open-sea.jpg`,title:`开阔水域`,label:`OPEN WATER`,text:`开阔的水面航行场景，用于观察艇群与环境中的运动。`},
-    {image:`platform.jpg`,title:`海上平台`,label:`OFFSHORE`,text:`海上设施周边的场景呈现，拓展任务的空间背景。`},
-    {image:`underwater.jpg`,title:`海底世界`,label:`UNDERWATER`,text:`海底光学与探照灯交互展示，验证范围与水面训练分别说明。`},
-    {image:`grassland.jpg`,title:`山地草原`,label:`LANDSCAPE`,text:`无人机与地面车交互展示，探索更多类型智能体的呈现。`}
-  ];
   const nav = [[`场景与任务`,`woa-scenes`],[`核心能力`,`woa-platform`],[`开发者`,`woa-developers`],[`常见问题`,`woa-faq`]];
   d.useEffect(() => {
     const previous = document.title;
